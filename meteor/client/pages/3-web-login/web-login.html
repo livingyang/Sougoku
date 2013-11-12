@@ -1,0 +1,9 @@
+<template name="webLogin">
+	<h1>Web Login</h1>
+	{{#if currentUser}}
+	<a href="{{pathFor 'home'}}">Goto Home</a>
+	<br />
+	<br />
+	{{/if}}
+	{{loginButtons}}
+</template>

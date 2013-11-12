@@ -1,5 +1,8 @@
 if Meteor.isClient
 
+	@HasCordovaWindow = ->
+		window.top.cordova?
+
 	@PurchasePlatformCreator = PurchasePlatformCreator = class
 		constructor: (@cordovaWindow, @options) ->
 			@cordovaWindow.document.addEventListener "deviceready", @onDeviceReady
@@ -58,7 +61,13 @@ if Meteor.isClient
 				super [orderId]
 
 			loginSuccess: (obj) ->
-				super
+				Meteor.call "login91", obj, (error, result) ->
+					if error?
+						alert error
+					else
+						Meteor.loginWithPassword result.username, result.password, (error) ->
+							alert "login success" if not error?
+					
 			loginFail: (obj) ->
 				super
 			purchaseSuccess: (obj) ->
@@ -83,5 +92,21 @@ if Meteor.isClient
 			purchaseFail: (obj) ->
 				super
 
-# if Meteor.isServer
-# 	console.log "Meteor.isServer"
+if Meteor.isServer
+	Meteor.methods
+		login91: (obj) ->
+			user91 = obj.uin
+			sessionId = obj.session
+			check user91, String
+			check sessionId, String
+			username = "91_#{user91}"
+			if Meteor.users.find(username: username).count() is 0
+				Accounts.createUser username: username, password: sessionId
+				console.log "createUser username:#{username}, password:#{sessionId}"
+			else
+				Accounts.setPassword (Meteor.users.findOne username: username)._id, sessionId
+				console.log "setPassword username:#{username} password:#{sessionId}"
+
+			username: username, password: sessionId
+			# console.log "login91, obj: #{JSON.stringify obj}"
+			# obj

@@ -111,7 +111,7 @@
 
 /* Comment out the block below to over-ride */
 
-/*
+
 
 - (void) webViewDidStartLoad:(UIWebView*)theWebView
 {
@@ -120,14 +120,21 @@
 
 - (void) webView:(UIWebView*)theWebView didFailLoadWithError:(NSError*)error
 {
+    [[[UIAlertView alloc] initWithTitle:@"连接失败" message:nil delegate:self cancelButtonTitle:@"重新连接" otherButtonTitles:nil] show];
+    
     return [super webView:theWebView didFailLoadWithError:error];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.startPage]]];
 }
 
 - (BOOL) webView:(UIWebView*)theWebView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
 {
     return [super webView:theWebView shouldStartLoadWithRequest:request navigationType:navigationType];
 }
-*/
+
 
 @end
 
