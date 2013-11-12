@@ -1,0 +1,21 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "reststop2": {},
+      "iron-router": {}
+    },
+    "packages": {
+      "reststop2": {
+        "git": "https://github.com/BeDifferential/reststop2.git",
+        "tag": "v0.5.4",
+        "commit": "12ff0306979d7b375cfa555fcaad9efafd3308ca"
+      },
+      "iron-router": {
+        "git": "https://github.com/EventedMind/iron-router.git",
+        "tag": "v0.6.1",
+        "commit": "4e1ee0581d68bff422a915dacb0bd30eae10fe08"
+      }
+    }
+  }
+}
