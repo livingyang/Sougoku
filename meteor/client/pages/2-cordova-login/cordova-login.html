@@ -1,11 +1,10 @@
 <template name="cordovaLogin">
 	<h1>Cordova Login</h1>
 	{{#if currentUser}}
+	<input id="relogin" type="button" value="Relogin" />
 	<a href="{{pathFor 'home'}}">Goto Home</a>
 	{{else}}
-	<a href="{{pathFor 'logo'}}">Logo</a>
 	<input id="login" type="button" value="Login" />
-	<input id="relogin" type="button" value="Relogin" />
 	<input id="purchase" type="button" value="Purchase" />
 	{{/if}}
 </template>

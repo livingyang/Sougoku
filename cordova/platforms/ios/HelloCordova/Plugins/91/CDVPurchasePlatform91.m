@@ -28,6 +28,13 @@ static CDVInvokedUrlCommand *loginCommand = nil;
 
 - (void)init:(CDVInvokedUrlCommand *)command
 {
+    static BOOL hasRun = false;
+    if (hasRun)
+    {
+        return;
+    }
+    hasRun = true;
+    
     NSDictionary *options = [command.arguments firstObject];
     
     NdInitConfigure *cfg = [[NdInitConfigure alloc] init];
