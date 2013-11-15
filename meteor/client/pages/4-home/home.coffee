@@ -1,2 +1,3 @@
-Template.home.events "click button": ->
+Template.home.events "click #fight": ->
 	# alert "click"
+	Router.go "fight"
