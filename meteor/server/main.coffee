@@ -1,6 +1,6 @@
 
-Meteor.AppCache.config onlineOnly: [
-	"/card",
-	"/scene",
-	"/item"
-]
+# Meteor.AppCache.config onlineOnly: [
+# 	"/card",
+# 	"/scene",
+# 	"/item"
+# ]
