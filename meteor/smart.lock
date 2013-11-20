@@ -3,7 +3,8 @@
   "dependencies": {
     "basePackages": {
       "reststop2": {},
-      "iron-router": {}
+      "iron-router": {},
+      "createjs": {}
     },
     "packages": {
       "reststop2": {
@@ -15,6 +16,11 @@
         "git": "https://github.com/EventedMind/iron-router.git",
         "tag": "v0.6.1",
         "commit": "4e1ee0581d68bff422a915dacb0bd30eae10fe08"
+      },
+      "createjs": {
+        "git": "https://github.com/nrafter/meteor-createjs.git",
+        "tag": "v0.1.1",
+        "commit": "3697339290f4cbc60969f21eb34ebefa2816b34e"
       }
     }
   }

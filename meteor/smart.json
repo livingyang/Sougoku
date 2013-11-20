@@ -1,6 +1,7 @@
 {
   "packages": {
     "reststop2": {},
-    "iron-router": {}
+    "iron-router": {},
+    "createjs": {}
   }
 }
