@@ -4,7 +4,9 @@
     "basePackages": {
       "reststop2": {},
       "iron-router": {},
-      "createjs": {}
+      "createjs": {},
+      "nprogress": {},
+      "bootstrap-3": {}
     },
     "packages": {
       "reststop2": {
@@ -21,6 +23,16 @@
         "git": "https://github.com/nrafter/meteor-createjs.git",
         "tag": "v0.1.1",
         "commit": "3697339290f4cbc60969f21eb34ebefa2816b34e"
+      },
+      "nprogress": {
+        "git": "https://github.com/zhouzhuojie/meteor-nprogress.git",
+        "tag": "v0.0.3",
+        "commit": "ffd1c5dd400af64121197f4e637a215c4b6b1fc7"
+      },
+      "bootstrap-3": {
+        "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
+        "tag": "v0.3.6",
+        "commit": "711dbcabe333c8714298b2fd1de97fdcdae6efa7"
       }
     }
   }

@@ -2,6 +2,8 @@
   "packages": {
     "reststop2": {},
     "iron-router": {},
-    "createjs": {}
+    "createjs": {},
+    "nprogress": {},
+    "bootstrap-3": {}
   }
 }

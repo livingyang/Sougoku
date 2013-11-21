@@ -3,4 +3,4 @@ Router.map ->
 	@route "cordovaLogin"
 	@route "webLogin"
 	@route "home"
-	@route "fight", path: "fight"
+	@route "fight", path: "fight/:data?"
