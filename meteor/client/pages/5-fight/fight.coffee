@@ -48,12 +48,6 @@ class @FightController extends RouteController
 		container.set scaleX: 0.5, scaleY: 0.5 if canvas.height < 400
 
 		console.log [canvas.width, canvas.height]
-		# //Create a Shape DisplayObject.
-		circle = new createjs.Shape();
-		circle.graphics.beginFill("red").drawCircle(0, 0, 40);
-		circle.cache -20, -20, 40, 40
-		circle.x = circle.y = 50;
-		container.addChild(circle);
 
 		# 所有的卡片
 		totalCard = new createjs.Text "0", "24px Arial", "green"
@@ -87,7 +81,8 @@ class @FightController extends RouteController
 
 		# add image
 		addRect = new createjs.Shape();
-		addRect.graphics.beginFill("blue").drawRect -350, 100, 100, 100
+		addRect.graphics.beginFill("blue").drawRect -350, 0, 100, 100
+		# addRect.set x: 0
 		container.addChild addRect
 
 		@_loadResource (queue) =>
@@ -104,8 +99,8 @@ class @FightController extends RouteController
 					y: (Random.fraction() - 0.5) * 400
 				card.set randomPos()
 				
-				createjs.Tween.get(card, {loop:true})
-				.to(randomPos(), 1000)
+				# createjs.Tween.get(card, {loop:true})
+				# .to(randomPos(), 1000)
 	
 	_loadResource: (loadCompleteFunc) ->
 		queue = new createjs.LoadQueue(false)

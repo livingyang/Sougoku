@@ -1,0 +1,14 @@
+<template name="cardList">
+	<h1>Card List</h1>
+	<a href="{{pathFor 'home'}}">Goto Home</a>
+	{{#each cardList}}
+		{{> card}}
+	{{/each}}
+</template>
+
+<template name="card">
+	<div class="card-bg" style="background-image:url({{image}})">
+		<p class="card-health">{{health}}</p>
+		<p class="card-attack">{{attack}}</p>
+	</div>
+</template>

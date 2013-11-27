@@ -6,7 +6,8 @@
       "iron-router": {},
       "createjs": {},
       "nprogress": {},
-      "bootstrap-3": {}
+      "bootstrap-3": {},
+      "json-loader": {}
     },
     "packages": {
       "reststop2": {
@@ -33,6 +34,11 @@
         "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
         "tag": "v0.3.6",
         "commit": "711dbcabe333c8714298b2fd1de97fdcdae6efa7"
+      },
+      "json-loader": {
+        "git": "https://github.com/livingyang/json-loader.git",
+        "tag": "v0.0.2",
+        "commit": "4cb2d5a52ebe4d202efc5b04feb9f34d22a7470a"
       }
     }
   }

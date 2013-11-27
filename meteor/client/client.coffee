@@ -4,3 +4,4 @@ Router.map ->
 	@route "webLogin"
 	@route "home"
 	@route "fight", path: "fight/:data?"
+	@route "cardList"
