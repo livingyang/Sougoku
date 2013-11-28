@@ -1,6 +1,3 @@
-
-@CardCollections = new JsonLoader
-	path: "csv/1-human.json"
-	indexName: "id"
-	onComplete: (loader) ->
-		console.log loader
+TestCollection = CreateCollectionFromCsv "csv/1-human.csv", (isSuccess, collection) ->
+	console.log isSuccess
+	console.log collection.find().fetch()

@@ -16,4 +16,5 @@ stylus
 createjs
 nprogress
 bootstrap-3
-json-loader
+http
+csv-to-collection

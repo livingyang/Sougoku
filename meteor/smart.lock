@@ -7,7 +7,8 @@
       "createjs": {},
       "nprogress": {},
       "bootstrap-3": {},
-      "json-loader": {}
+      "json-loader": {},
+      "csv-to-collection": {}
     },
     "packages": {
       "reststop2": {
@@ -39,6 +40,11 @@
         "git": "https://github.com/livingyang/json-loader.git",
         "tag": "v0.0.2",
         "commit": "4cb2d5a52ebe4d202efc5b04feb9f34d22a7470a"
+      },
+      "csv-to-collection": {
+        "git": "https://github.com/livingyang/csv-to-collection.git",
+        "tag": "v0.1.0",
+        "commit": "cfd386ce7473e9683816e35825105d90e0371acc"
       }
     }
   }

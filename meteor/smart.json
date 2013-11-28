@@ -5,6 +5,7 @@
     "createjs": {},
     "nprogress": {},
     "bootstrap-3": {},
-    "json-loader": {}
+    "json-loader": {},
+    "csv-to-collection": {}
   }
 }
