@@ -37,8 +37,8 @@
       },
       "csv-to-collection": {
         "git": "https://github.com/livingyang/csv-to-collection.git",
-        "tag": "v0.1.0",
-        "commit": "cfd386ce7473e9683816e35825105d90e0371acc"
+        "tag": "v0.1.1",
+        "commit": "0bda005e63e9573adf1d3e6ae419f376784f25e5"
       }
     }
   }

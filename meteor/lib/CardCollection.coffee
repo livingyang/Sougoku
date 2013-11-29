@@ -1,3 +1,7 @@
-@CardCollection = CreateCollectionFromCsv "csv/1-human.csv", (isSuccess, collection) ->
-	console.log isSuccess
-	console.log "card count: #{collection.find().count()}"
+@CardCollection = CreateCollectionFromPublicCsv "csv/1-human.csv"
+
+CardCollection.getIsOpenCursor = ->
+	@find(isOpen: "1")
+
+Meteor.startup ->
+	console.log CardCollection.getIsOpenCursor().count()
