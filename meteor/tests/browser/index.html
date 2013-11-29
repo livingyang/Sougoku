@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Mocha</title>
+    <link rel="stylesheet" href="mocha.css">
+    <script type="text/javascript" src="mocha.js"></script>
+    <script type="text/javascript" src="chai.js"></script>
+    <script type="text/javascript" src="coffee-script.js"></script>
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script>mocha.setup('bdd')</script>
+    <script>expect = chai.expect</script>
+    <!-- // <script src="Array.js"></script> -->
+    <script type="text/coffeescript" src="Array.coffee"></script>
+    <script type="text/coffeescript">
+      mocha.run();
+    </script>
+  </body>
+</html>
