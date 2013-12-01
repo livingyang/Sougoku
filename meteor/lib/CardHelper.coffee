@@ -17,4 +17,7 @@
 			1
 		else
 			Math.floor Math.sqrt exp / 30
-			
+
+	getBaseExp: (cost) ->
+		return 0 if not cost instanceof Number
+		100 * Math.pow 3, cost - 1
