@@ -3,8 +3,7 @@
 CardCollection.getIsOpenCursor = ->
 	@find isOpen: "1"
 
-Meteor.startup ->
-	# console.log  getExpFromLevel 1
-	# console.log  getExpFromLevel 2
+# Meteor.startup ->
+# 	console.log CardHelper.getExpFromLevel 1
+# 	console.log  CardHelper.getExpFromLevel 2
 
-	# console.log getLevelFromExp 101, 0, 10
