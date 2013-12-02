@@ -1,16 +1,18 @@
 <template name="home">
-	<div id="bg-home"></div>
-	<a href="{{pathFor 'logo'}}">Back To Logo</a>
-	<div class="right-nav">
-		<div>
-			<button class="btn-round">探索</button>
-			<button id="fight" class="btn-round">挑战</button>
-			<button class="btn-round">设置</button>
-			<button class="btn-round">商店</button>
-			<button class="btn-round">合成</button>
-			<button id="cardList" class="btn-round">卡牌集</button>
-			<button class="btn-round">剧情</button>
-			<button id="myCards" class="btn-round">我的卡牌</button>
+	<div id="bg-home">
+		<a href="{{pathFor 'logo'}}">Back To Logo</a>
+		<div class="right-nav">
+			<div>
+				<a class="btn btn-primary btn-block">探索</a>
+				<a id="fight" class="btn btn-primary btn-block">挑战</a>
+				<a class="btn btn-primary btn-block">设置</a>
+				<a class="btn btn-primary btn-block">商店</a>
+				<a class="btn btn-primary btn-block" href="{{pathFor 'compoundCard'}}">合成</a>
+				<a class="btn btn-primary btn-block" href="{{pathFor 'cardList'}}">卡牌集</a>
+				<a class="btn btn-primary btn-block">剧情</a>
+				<a class="btn btn-primary btn-block" href="{{pathFor 'myCards'}}">我的卡牌</a>
+			</div>
 		</div>
 	</div>
+
 </template>

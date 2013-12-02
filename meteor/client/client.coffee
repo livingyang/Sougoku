@@ -6,3 +6,4 @@ Router.map ->
 	@route "fight", path: "fight/:data?"
 	@route "cardList"
 	@route "myCards"
+	@route "compoundCard", path: "compoundCard/:mainCardId?"

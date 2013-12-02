@@ -21,7 +21,17 @@ CardCollection.randomOpenCard = ->
 
 UserCardCollection.getUserCard = (userCardId) ->
 	@findOne _id: userCardId
-	
+
+UserCardCollection.getDetailUserCard = (userCardIdOrUserCard) ->
+	userCard = if typeof userCardIdOrUserCard is "string" then @getUserCard userCardIdOrUserCard else userCardIdOrUserCard
+	return if typeof userCard isnt "object"
+
+	card = CardCollection.getCard userCard.cardId
+	userCard.level = CardHelper.getLevelFromExp userCard.exp
+
+	_.defaults userCard, card
+	userCard
+
 UserCardCollection.getCompoundExp = (userCard) ->
 	(userCard.exp ? 0) + CardHelper.getBaseExp (CardCollection.getCard userCard.cardId).cost
 

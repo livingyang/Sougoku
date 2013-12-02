@@ -1,11 +1,10 @@
 Template.myCards.userCards = ->
-	userCards = (UserCardCollection.find {}).fetch()
-	for userCard in userCards
-		# add base info
-		_.defaults userCard, CardCollection.getCard userCard.cardId
-		userCard.level = CardHelper.getLevelFromExp userCard.exp
+	for userCard in (UserCardCollection.find {}).fetch()
+		UserCardCollection.getDetailUserCard userCard
 
-	userCards
+Template.myCards.events "click .icon-card": ->
+	console.log @_id
+	Router.go "compoundCard", mainCardId: @_id
 
 Template.myCards.events "click #addCard": ->
 	UserCardCollection.addRandomCard()
