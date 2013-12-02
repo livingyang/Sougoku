@@ -23,3 +23,12 @@ describe "CardHelper", ->
 			(expect CardHelper.getBaseExp 4).toBe 2700
 			(expect CardHelper.getBaseExp 5).toBe 8100
 			(expect CardHelper.getBaseExp 6).toBe 24300
+
+	describe "getBetweenValue", ->
+		it "simple test", ->
+			(expect CardHelper.getBetweenValue 1, 3, 1, 3, 1).toBe 1
+			(expect CardHelper.getBetweenValue 1, 3, 1, 3, 2).toBe 2
+			(expect CardHelper.getBetweenValue 1, 3, 1, 3, 3).toBe 3
+
+			(expect CardHelper.getBetweenValue 1, 3, 100, 300, 2).toBe 200
+			

@@ -5,3 +5,4 @@ Router.map ->
 	@route "home"
 	@route "fight", path: "fight/:data?"
 	@route "cardList"
+	@route "myCards"

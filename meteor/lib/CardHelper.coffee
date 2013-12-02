@@ -21,3 +21,7 @@
 	getBaseExp: (cost) ->
 		return 0 if not cost instanceof Number
 		100 * Math.pow 3, cost - 1
+
+	getBetweenValue: (minLevel, maxLevel, minValue, maxValue, curLevel) ->
+		Math.floor (curLevel * maxValue - curLevel * minValue - minLevel * maxValue + maxLevel * minValue) / (maxLevel - minLevel)
+
