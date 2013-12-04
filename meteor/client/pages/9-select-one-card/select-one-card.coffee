@@ -7,7 +7,10 @@ class @SelectOneCardController extends RouteController
 
 
 Template.selectOneCard.events "click #cancel": ->
-	Router.current().options.onCancel?()
+	if Router.current().options.onCancel?
+		Router.current().options.onCancel()
+	else
+		Router.go "/"
 
 Template.selectOneCard.events "click .card-icon": ->
 	Router.current().options.onSelectCard? @_id

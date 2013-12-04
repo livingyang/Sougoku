@@ -1,0 +1,11 @@
+<template name="selectMultiCard">
+	<h1>Select Multi Card</h1>
+	<a href="{{pathFor 'home'}}">Back To Home</a>
+	<a id="cancel" class="btn btn-primary">Cancel</a>
+	<a id="ok" class="btn btn-success">OK</a>
+	<br/>
+	{{#each userCards}}
+	<img class="card-icon" src="{{icon}}" />
+	<label>Is select: {{isSelected}}</label>
+	{{/each}}
+</template>
