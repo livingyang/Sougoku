@@ -32,6 +32,10 @@ UserCardCollection.getDetailUserCard = (userCardIdOrUserCard) ->
 	_.defaults userCard, card
 	userCard
 
+UserCardCollection.getTotalDetailUserCard = ->
+	for userCard in @find().fetch()
+		@getDetailUserCard userCard
+
 UserCardCollection.getCompoundExp = (userCard) ->
 	(userCard.exp ? 0) + CardHelper.getBaseExp (CardCollection.getCard userCard.cardId).cost
 

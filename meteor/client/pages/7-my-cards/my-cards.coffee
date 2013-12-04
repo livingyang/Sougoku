@@ -1,10 +1,8 @@
-Template.myCards.userCards = ->
-	for userCard in (UserCardCollection.find {}).fetch()
-		UserCardCollection.getDetailUserCard userCard
+Template.myCards.userCards = -> UserCardCollection.getTotalDetailUserCard()
 
 Template.myCards.events "click .icon-card": ->
 	console.log @_id
-	Router.go "compoundCard", mainCardId: @_id
+	Router.go "compoundCard", {}, {query: {test: "ttt", mainCardId: @_id}, callback: -> alert "aaa"}
 
 Template.myCards.events "click #addCard": ->
 	UserCardCollection.addRandomCard()
