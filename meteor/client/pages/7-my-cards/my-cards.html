@@ -2,7 +2,7 @@
 	<h1>My Cards</h1>
 	<a href="{{pathFor 'home'}}">Goto Home</a>
 	<button id="addCard">Add Card</button>
-	<button id="compoundCard">Compound Card</button>
+	<p>Total card: {{userCards.length}}</p>
 	{{#each userCards}}
 		{{> userCard}}
 	{{/each}}
@@ -10,7 +10,7 @@
 
 <template name="userCard">
 	<div>
-		<p>id: {{_id}}, user: {{userId}}, cardId: {{cardId}}, exp: {{exp}}, level: {{level}}, cost: {{cost}}, mergeCount: {{mergeCount}}</p>
+		<p>id: {{_id}}, user: {{userId}}, cardId: {{cardId}}, name: {{name}}, exp: {{exp}}, level: {{level}}, cost: {{cost}}, mergeCount: {{mergeCount}}</p>
 		<img class="icon-card" src="{{icon}}"/>
 	</div>
 </template>

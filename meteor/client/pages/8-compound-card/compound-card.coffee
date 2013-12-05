@@ -40,4 +40,4 @@ Template.compoundCard.events "click #selectFoodCard": ->
 
 Template.compoundCard.events "click #compound": ->
 	UserCardCollection.compoundCard @mainUserCard._id, (foodUserCard._id for foodUserCard in @foodUserCardList)
-	GotoCompoundCardPage @mainUserCard._id, []
+	GotoCompoundCardPage @mainUserCard._id
