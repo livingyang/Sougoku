@@ -15,7 +15,7 @@ Template.compoundCard.events "click #selectMainCard": ->
 		onSelectCard: (userCardId) ->
 			# alert userCardId
 			# Router.go "home"
-			GotoCompoundCardPage userCardId, oldFoodUserCardIdList
+			GotoCompoundCardPage userCardId, _.without oldFoodUserCardIdList, userCardId
 		onCancel: ->
 			# Router.go "home"
 			GotoCompoundCardPage oldMainUserCardId, oldFoodUserCardIdList
@@ -35,7 +35,7 @@ Template.compoundCard.events "click #selectFoodCard": ->
 		selectedList[userCardId] = true
 
 	delete selectedList[oldMainUserCardId]
-	
+
 	GotoSelectMultiCardPage 
 		userCardIdWithSelectedList: selectedList
 		onSelectCardList: (userCardIdWithSelectedList) ->
