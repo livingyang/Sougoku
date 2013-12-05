@@ -1,34 +1,33 @@
 
 keySelectedUserIdList = "keySelectedUserIdList"
 
-resetList = ->
-	setList {}
-
 getList = ->
 	(Session.get keySelectedUserIdList) ? {}
 
-setList = (userCardIdList) ->
-	Session.set keySelectedUserIdList, userCardIdList
+setList = (userCardIdWithSelectedList) ->
+	Session.set keySelectedUserIdList, userCardIdWithSelectedList
 
 selectUserCardId = (userCardId) ->
-	userCardIdList = getList()
-	userCardIdList[userCardId] = not userCardIdList[userCardId]
-	setList userCardIdList
+	userCardIdWithSelectedList = getList()
+	userCardIdWithSelectedList[userCardId] = not userCardIdWithSelectedList[userCardId]
+	setList userCardIdWithSelectedList
 
 class @SelectMultiCardController extends RouteController
 	data: ->
-		userCards = UserCardCollection.getTotalDetailUserCard()
-		for userCard in userCards
-			userCard.isSelected = Boolean getList()[userCard._id]
-
+		userCards = for userCardId, isSelected of getList()
+			userCard = UserCardCollection.getDetailUserCard userCardId
+			userCard.isSelected = isSelected
+			userCard
 		userCards: userCards
-
+		
 @GotoSelectMultiCardPage = (options) ->
-	resetList()
+	setList options.userCardIdWithSelectedList
 	Router.go "selectMultiCard", null, options
 
 
 Template.selectMultiCard.events "click #cancel": ->
+	console.log Router.current().options
+
 	if Router.current().options.onCancel?
 		Router.current().options.onCancel()
 	else

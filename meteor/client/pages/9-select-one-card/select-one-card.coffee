@@ -5,8 +5,8 @@ class @SelectOneCardController extends RouteController
 @GotoSelectOneCardPage = (options) ->
 	Router.go "selectOneCard", null, options
 
-
 Template.selectOneCard.events "click #cancel": ->
+	console.log this
 	if Router.current().options.onCancel?
 		Router.current().options.onCancel()
 	else

@@ -2,25 +2,16 @@
 	<h1>Compound Card</h1>
 	<a href="{{pathFor 'home'}}">Goto Home</a>
 
-	<a class="btn btn-primary">Select Main Card</a>
-	{{#if hasMainCard}}
-	<div>
-		<img src="{{mainCard.icon}}" />
-	</div>
-	{{/if}}
-	<p>t: {{t}}</p>
-</template>
+	<a id="selectMainCard" class="btn btn-primary btn-block">Select Main Card</a>
 
-<template name="mainCard">
-	<div>
-		<p>id: {{_id}}, user: {{userId}}, cardId: {{cardId}}, exp: {{exp}}, level: {{level}}, cost: {{cost}}, mergeCount: {{mergeCount}}</p>
-		<img class="icon-card" src="{{icon}}"/>
-	</div>
-</template>
+	{{#with mainUserCard}}
+	{{> userCard}}
+	{{/with}}
 
-<template name="foodCard">
-	<div>
-		<p>id: {{_id}}, user: {{userId}}, cardId: {{cardId}}, exp: {{exp}}, level: {{level}}, cost: {{cost}}, mergeCount: {{mergeCount}}</p>
-		<img class="icon-card" src="{{icon}}"/>
-	</div>
+	<a id="selectFoodCard" class="btn btn-primary btn-block">Select Food Card</a>
+
+	{{#each foodUserCardList}}
+	{{> userCard}}
+	{{/each}}
+
 </template>

@@ -5,7 +5,9 @@
 	<a id="ok" class="btn btn-success">OK</a>
 	<br/>
 	{{#each userCards}}
-	<img class="card-icon" src="{{icon}}" />
-	<label>Is select: {{isSelected}}</label>
+		<div class="card-icon">
+		{{> userCard}}
+		</div>
+		<label>Is select: {{isSelected}}</label>
 	{{/each}}
 </template>
