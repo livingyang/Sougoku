@@ -2,6 +2,10 @@
 	<h1>Compound Card</h1>
 	<a href="{{pathFor 'home'}}">Goto Home</a>
 
+	{{#if isReady}}
+	<a id="compound" class="btn btn-success">开始合成</a>
+	{{/if}}
+
 	<a id="selectMainCard" class="btn btn-primary btn-block">Select Main Card</a>
 
 	{{#with mainUserCard}}
