@@ -9,3 +9,4 @@ Router.map ->
 	@route "compoundCard"
 	@route "selectOneCard"
 	@route "selectMultiCard"
+	@route "shop"

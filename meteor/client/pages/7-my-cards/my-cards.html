@@ -1,7 +1,6 @@
 <template name="myCards">
 	<h1>My Cards</h1>
 	<a href="{{pathFor 'home'}}">Goto Home</a>
-	<button id="addCard">Add Card</button>
 	<p>Total card: {{userCards.length}}</p>
 	{{#each userCards}}
 		{{> userCard}}
