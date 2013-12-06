@@ -36,5 +36,5 @@ Template.selectMultiCard.events "click #cancel": ->
 Template.selectMultiCard.events "click #ok": ->
 	Router.current().options.onSelectCardList? getList()
 	
-Template.selectMultiCard.events "click .card-icon": ->
+Template.selectMultiCard.events "click .div-user-card": ->
 	selectUserCardId @_id

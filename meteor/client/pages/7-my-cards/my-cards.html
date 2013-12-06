@@ -8,8 +8,17 @@
 </template>
 
 <template name="userCard">
-	<div>
-		<p>id: {{_id}}, user: {{userId}}, cardId: {{cardId}}, name: {{name}}, exp: {{exp}}, level: {{level}}, cost: {{cost}}, mergeCount: {{mergeCount}}</p>
+	<div class="div-user-card">
+		<p>
+			<span class="label label-primary">UserCard</span>
+			id: {{_id}}, user: {{userId}}, exp: {{exp}}, level: {{level}}, mergeCount: {{mergeCount}}, limitMaxLevel: {{limitMaxLevel}}, limitLevel: {{limitLevel}}</p>
+
+		{{#with card}}
+		<p>
+			<span class="label label-primary">Card</span>
+			cardId: {{_id}}, name: {{name}}, cost: {{cost}}, support: {{support}}, maxLevel: {{maxLevel}}, mergeMaxLevel: {{mergeMaxLevel}}
+		</p>
 		<img class="icon-card" src="{{icon}}"/>
+		{{/with}}
 	</div>
 </template>

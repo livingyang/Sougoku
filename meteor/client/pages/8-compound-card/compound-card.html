@@ -6,6 +6,10 @@
 	<a id="compound" class="btn btn-success">开始合成</a>
 	{{/if}}
 
+	{{#if hasMerge}}
+	<span class="label label-danger">合并！！</span>
+	{{/if}}
+
 	<a id="selectMainCard" class="btn btn-primary btn-block">Select Main Card</a>
 
 	{{#with mainUserCard}}

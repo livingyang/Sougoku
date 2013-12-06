@@ -32,3 +32,20 @@ describe "CardHelper", ->
 
 			(expect CardHelper.getBetweenValue 1, 3, 100, 300, 2).toBe 200
 			
+	describe "getLimitLevel", ->
+		it "getLimitMaxLevel", ->
+			(expect CardHelper.getLimitMaxLevel 10, 30, 1).toBe 20
+			(expect CardHelper.getLimitMaxLevel 11, 30, 1).toBe 21
+			(expect CardHelper.getLimitMaxLevel 11, 30, 2).toBe 30
+
+		it "default value", ->
+			(expect CardHelper.getLimitMaxLevel 10, 10).toBe 10
+			(expect CardHelper.getLimitMaxLevel 10, 20).toBe 10
+
+			(expect CardHelper.getLimitLevel 14).toBe 14
+			(expect CardHelper.getLimitLevel 20).toBe 20
+			
+		it "simple test", ->
+			(expect CardHelper.getLimitLevel 6, 10).toBe 6
+			(expect CardHelper.getLimitLevel 10, 10).toBe 10
+			(expect CardHelper.getLimitLevel 14, 10).toBe 10

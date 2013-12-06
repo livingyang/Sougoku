@@ -25,3 +25,9 @@
 	getBetweenValue: (minLevel, maxLevel, minValue, maxValue, curLevel) ->
 		Math.floor (curLevel * maxValue - curLevel * minValue - minLevel * maxValue + maxLevel * minValue) / (maxLevel - minLevel)
 
+	getLimitMaxLevel: (maxLevel, mergeMaxLevel, mergeCount = 0) ->
+		limitMaxLevel = maxLevel + mergeCount * 10
+		if limitMaxLevel < mergeMaxLevel then limitMaxLevel else mergeMaxLevel
+
+	getLimitLevel: (curLevel, limitMaxLevel = curLevel) ->
+		if curLevel < limitMaxLevel then curLevel else limitMaxLevel

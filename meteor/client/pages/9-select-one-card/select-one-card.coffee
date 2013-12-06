@@ -12,5 +12,5 @@ Template.selectOneCard.events "click #cancel": ->
 	else
 		Router.go "/"
 
-Template.selectOneCard.events "click .card-icon": ->
+Template.selectOneCard.events "click .div-user-card": ->
 	Router.current().options.onSelectCard? @_id

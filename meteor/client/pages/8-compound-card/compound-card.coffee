@@ -1,8 +1,12 @@
 class @CompoundCardController extends RouteController
 	data: ->
-		mainUserCard: UserCardCollection.getDetailUserCard @options.mainUserCardId
-		foodUserCardList: UserCardCollection.getDetailUserCard userCardId for userCardId in @options.foodUserCardIdList or []
+		mainUserCard = UserCardCollection.getDetailUserCard @options.mainUserCardId
+		foodUserCardList = (UserCardCollection.getDetailUserCard userCardId for userCardId in @options.foodUserCardIdList ? [])
+
+		mainUserCard: mainUserCard
+		foodUserCardList: foodUserCardList
 		isReady: @options.mainUserCardId? and @options.foodUserCardIdList?.length > 0
+		hasMerge: _.contains (foodUserCard.card._id for foodUserCard in foodUserCardList), mainUserCard?.card._id
 
 @GotoCompoundCardPage = (mainUserCardId, foodUserCardIdList) ->
 	Router.go "compoundCard", null, mainUserCardId: mainUserCardId, foodUserCardIdList: foodUserCardIdList ? []

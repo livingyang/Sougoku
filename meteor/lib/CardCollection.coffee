@@ -28,8 +28,10 @@ UserCardCollection.getDetailUserCard = (userCardIdOrUserCard) ->
 
 	card = CardCollection.getCard userCard.cardId
 	userCard.level = CardHelper.getLevelFromExp userCard.exp
-
-	_.defaults userCard, card
+	userCard.limitMaxLevel = CardHelper.getLimitMaxLevel (Number card.maxLevel), (Number card.mergeMaxLevel), (Number userCard.mergeCount)
+	userCard.limitLevel = CardHelper.getLimitLevel userCard.level, userCard.limitMaxLevel
+	# _.defaults userCard, card
+	userCard.card = card
 	userCard
 
 UserCardCollection.getTotalDetailUserCard = ->
