@@ -1,0 +1,18 @@
+<template name="materialList">
+	<h1>Material List</h1>
+	<a href="{{pathFor 'home'}}">Goto Home</a>
+	{{#each materialList}}
+		{{> material}}
+		<span class="label label-primary">count: {{count}}</span>
+	{{/each}}
+</template>
+
+<template name="material">
+	<div class="div-material">
+		<img src="{{icon}}"/>
+		<p>
+			meterialId: {{_id}},
+			name: {{name}},
+		</p>
+	</div>
+</template>

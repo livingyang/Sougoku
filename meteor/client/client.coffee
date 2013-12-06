@@ -10,3 +10,4 @@ Router.map ->
 	@route "selectOneCard"
 	@route "selectMultiCard"
 	@route "shop"
+	@route "materialList"
