@@ -9,16 +9,16 @@
 
 <template name="userCard">
 	<div class="div-user-card">
+		<img class="icon-card" src="{{card.icon}}"/>
 		<p>
 			<span class="label label-primary">UserCard</span>
-			id: {{_id}}, user: {{userId}}, exp: {{exp}}, level: {{level}}, mergeCount: {{mergeCount}}, limitMaxLevel: {{limitMaxLevel}}, limitLevel: {{limitLevel}}</p>
+			id: {{_id}}, user: {{userId}}, exp: {{exp}}, compoundExp: {{compoundExp}}, level: {{level}}, mergeCount: {{mergeCount}}, limitMaxLevel: {{limitMaxLevel}}, limitLevel: {{limitLevel}}</p>
 
 		{{#with card}}
 		<p>
 			<span class="label label-primary">Card</span>
-			cardId: {{_id}}, name: {{name}}, cost: {{cost}}, support: {{support}}, maxLevel: {{maxLevel}}, mergeMaxLevel: {{mergeMaxLevel}}
+			cardId: {{_id}}, name: {{name}}, kind: {{kind}}, rare: {{rare}}, star: {{star}}, cost: {{cost}}, support: {{support}}, maxLevel: {{maxLevel}}, mergeMaxLevel: {{mergeMaxLevel}}
 		</p>
-		<img class="icon-card" src="{{icon}}"/>
 		{{/with}}
 	</div>
 </template>

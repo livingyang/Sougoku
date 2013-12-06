@@ -27,10 +27,13 @@ UserCardCollection.getDetailUserCard = (userCardIdOrUserCard) ->
 	return if typeof userCard isnt "object"
 
 	card = CardCollection.getCard userCard.cardId
+	card.star = CardHelper.getStar card.rare
+
 	userCard.level = CardHelper.getLevelFromExp userCard.exp
 	userCard.limitMaxLevel = CardHelper.getLimitMaxLevel (Number card.maxLevel), (Number card.mergeMaxLevel), (Number userCard.mergeCount)
 	userCard.limitLevel = CardHelper.getLimitLevel userCard.level, userCard.limitMaxLevel
-	# _.defaults userCard, card
+	userCard.compoundExp = @getCompoundExp userCard, card
+	
 	userCard.card = card
 	userCard
 
@@ -38,8 +41,8 @@ UserCardCollection.getTotalDetailUserCard = ->
 	for userCard in @find().fetch()
 		@getDetailUserCard userCard
 
-UserCardCollection.getCompoundExp = (userCard) ->
-	(userCard.exp ? 0) + CardHelper.getBaseExp (CardCollection.getCard userCard.cardId).cost
+UserCardCollection.getCompoundExp = (userCard, card = CardCollection.getCard userCard.cardId) ->
+	(userCard.exp ? 0) + CardHelper.getBaseExpFromRare card.rare
 
 if Meteor.isServer
 	UserCardCollection.addUserCard = (userId, cardId) ->
@@ -61,7 +64,6 @@ if Meteor.isServer
 		# 检查 mainUserCardId是否属于玩家
 		mainUserCard = UserCardCollection.getUserCard mainUserCardId
 		return if mainUserCard?.userId isnt @userId
-
 
 		# 获取所有用户卡牌信息
 		foodUserCards = (UserCardCollection.getUserCard foodUserCardId for foodUserCardId in foodUserCardIdList)
