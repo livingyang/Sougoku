@@ -1,13 +1,25 @@
 <template name="cardList">
 	<h1>Card List</h1>
-	<a href="{{pathFor 'home'}}">Goto Home</a>
+	<a href="{{pathFor 'home'}}" class="btn btn-primary">Goto Home</a>
 	{{#each cardList}}
 		{{> card}}
 	{{/each}}
 </template>
 
 <template name="card">
-	<div class="card-bg">
-		<img id="{{_id}}" src="{{icon}}" class="img-card" />
+	<div class="div-card well">
+		<img src="{{icon}}" />
+		<span class="label label-primary">
+			_id: {{_id}},
+			name: {{name}},
+			rare: {{rare}},
+			star: {{star}},
+			cost: {{cost}},
+			support: {{support}}
+		</span>
+		<span class="label label-info">
+			count: {{count}},
+			totalCount: {{totalCount}}
+		</span>
 	</div>
 </template>

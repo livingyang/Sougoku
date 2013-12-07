@@ -6,6 +6,8 @@
 	<br/>
 	{{#each userCards}}
 		{{> userCard}}
-		<label>Is select: {{isSelected}}</label>
+		<a class="btn btn-primary btn-plus"><span class="glyphicon glyphicon-plus"></span></a>
+		<a class="btn btn-primary btn-minus"><span class="glyphicon glyphicon-minus"></span></a>
+		<span class="label label-info">selectedCount: {{selectedCount}}</span>
 	{{/each}}
 </template>

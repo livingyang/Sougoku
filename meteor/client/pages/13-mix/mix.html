@@ -1,0 +1,32 @@
+<template name="mix">
+	<h1>Mix</h1>
+	<a href="{{pathFor 'home'}}">Goto Home</a>
+	<a class="btn btn-primary">Card</a>
+	<a class="btn btn-primary">Material</a>
+
+	{{#each mixTargetList}}
+		{{> mixTarget}}
+	{{/each}}
+</template>
+
+<template name="mixTarget">
+	<div class="div-mix-target well">
+		<img src="{{icon}}" />
+		{{#if canMix}}
+		<a class="mix-btn btn btn-danger">MIX</a>
+		{{/if}}
+		{{#each mixPartList}}
+			{{> mixPart}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="mixPart">
+	<div class="div-mix-part">
+		<img src="{{icon}}" />
+		<span class="label label-info">name: {{name}}, id: {{_id}}, type: {{type}}</span>
+		<span class="label label-primary">count: {{curCount}}/{{needCount}}</span>
+	</div>
+</template>
+
+

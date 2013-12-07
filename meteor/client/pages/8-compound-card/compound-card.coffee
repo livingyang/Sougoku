@@ -1,47 +1,58 @@
 class @CompoundCardController extends RouteController
 	data: ->
-		mainUserCard = UserCardCollection.getDetailUserCard @options.mainUserCardId
-		foodUserCardList = (UserCardCollection.getDetailUserCard userCardId for userCardId in @options.foodUserCardIdList ? [])
+		mainUserCard = UserCardCollection.getDetailUserCardFromCardId @options.mainCardId
+		
+		totalCount = 0
+		totalExp = 0
+		foodUserCardList = (for foodUserCard in UserCardCollection.getDetailUserCardList() when @options.cardIdAndCountMap?[foodUserCard.card._id] > 0
+			foodUserCard.selectedCount = @options.cardIdAndCountMap[foodUserCard.card._id]
+			totalCount += foodUserCard.selectedCount
+			totalExp += foodUserCard.compoundExp * foodUserCard.selectedCount
+			foodUserCard
+		)
 
 		mainUserCard: mainUserCard
+		totalCount: totalCount
+		totalExp: totalExp
 		foodUserCardList: foodUserCardList
-		isReady: @options.mainUserCardId? and @options.foodUserCardIdList?.length > 0
+		isReady: @options.mainCardId? and totalCount > 0
 		hasMerge: _.contains (foodUserCard.card._id for foodUserCard in foodUserCardList), mainUserCard?.card._id
 
-@GotoCompoundCardPage = (mainUserCardId, foodUserCardIdList) ->
-	Router.go "compoundCard", null, mainUserCardId: mainUserCardId, foodUserCardIdList: foodUserCardIdList ? []
+@GotoCompoundCardPage = (mainCardId, cardIdAndCountMap) ->
+	Router.go "compoundCard", null, mainCardId: mainCardId, cardIdAndCountMap: cardIdAndCountMap
 
 Template.compoundCard.events "click #selectMainCard": ->
-	oldMainUserCardId = Router.current().options.mainUserCardId
-	oldFoodUserCardIdList = Router.current().options.foodUserCardIdList ? []
+	oldMainCardId = Router.current().options.mainCardId
+	oldCardIdAndCountMap = Router.current().options.cardIdAndCountMap
 
 	GotoSelectOneCardPage
 		onSelectCard: (userCardId) ->
-			GotoCompoundCardPage userCardId, _.without oldFoodUserCardIdList, userCardId
+			GotoCompoundCardPage userCardId, oldCardIdAndCountMap
 		onCancel: ->
-			GotoCompoundCardPage oldMainUserCardId, oldFoodUserCardIdList
+			GotoCompoundCardPage oldMainCardId, oldCardIdAndCountMap
 
 Template.compoundCard.events "click #selectFoodCard": ->
-	oldMainUserCardId = Router.current().options.mainUserCardId
-	oldFoodUserCardIdList = Router.current().options.foodUserCardIdList ? []
-	
-	selectedList = {}
+	oldMainCardId = Router.current().options.mainCardId
+	oldCardIdAndCountMap = Router.current().options.cardIdAndCountMap
 
-	for userCard in UserCardCollection.getTotalDetailUserCard()
-		selectedList[userCard._id] = false
-
-	for userCardId in oldFoodUserCardIdList
-		selectedList[userCardId] = true
-
-	delete selectedList[oldMainUserCardId]
+	if not oldCardIdAndCountMap?
+		oldCardIdAndCountMap = {}
+		for cardId, userCard of UserCardCollection.getUserCardMap() when userCard.count > 0
+			oldCardIdAndCountMap[cardId] = 0
+		oldCardIdAndCountMap
 
 	GotoSelectMultiCardPage 
-		userCardIdWithSelectedList: selectedList
-		onSelectCardList: (userCardIdWithSelectedList) ->
-			GotoCompoundCardPage oldMainUserCardId, (userCardId for userCardId, isSelected of userCardIdWithSelectedList when isSelected)
+		cardIdAndCountMap: oldCardIdAndCountMap
+		onSelectCardList: (cardIdAndCountMap) ->
+			GotoCompoundCardPage oldMainCardId, cardIdAndCountMap
 		onCancel: ->
-			GotoCompoundCardPage oldMainUserCardId, oldFoodUserCardIdList
+			GotoCompoundCardPage oldMainCardId, oldCardIdAndCountMap
 
 Template.compoundCard.events "click #compound": ->
-	UserCardCollection.compoundCard @mainUserCard._id, (foodUserCard._id for foodUserCard in @foodUserCardList)
-	GotoCompoundCardPage @mainUserCard._id
+	
+	foodCardIdAndCountMap = {}
+	for foodUserCard in @foodUserCardList
+		foodCardIdAndCountMap[foodUserCard.card._id] = foodUserCard.selectedCount
+	
+	UserCardCollection.compoundCard @mainUserCard.card._id, foodCardIdAndCountMap
+	GotoCompoundCardPage()

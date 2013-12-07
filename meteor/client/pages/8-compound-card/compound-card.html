@@ -10,6 +10,10 @@
 	<span class="label label-danger">合并！！</span>
 	{{/if}}
 
+	<span class="label label-info">totalCount: {{totalCount}}</span>
+
+	<span class="label label-info">totalExp: {{totalExp}}</span>
+
 	<a id="selectMainCard" class="btn btn-primary btn-block">Select Main Card</a>
 
 	{{#with mainUserCard}}
@@ -20,6 +24,7 @@
 
 	{{#each foodUserCardList}}
 	{{> userCard}}
+	<span class="label label-primary">selectedCount: {{selectedCount}}</span>
 	{{/each}}
 
 </template>

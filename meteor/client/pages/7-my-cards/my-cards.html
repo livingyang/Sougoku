@@ -8,11 +8,19 @@
 </template>
 
 <template name="userCard">
-	<div class="div-user-card">
+	<div class="div-user-card well">
 		<img class="icon-card" src="{{card.icon}}"/>
 		<p>
 			<span class="label label-primary">UserCard</span>
-			id: {{_id}}, user: {{userId}}, exp: {{exp}}, compoundExp: {{compoundExp}}, level: {{level}}, mergeCount: {{mergeCount}}, limitMaxLevel: {{limitMaxLevel}}, limitLevel: {{limitLevel}}</p>
+				exp: {{exp}},
+				compoundExp: {{compoundExp}},
+				level: {{level}},
+				mergeCount: {{mergeCount}},
+				limitMaxLevel: {{limitMaxLevel}},
+				limitLevel: {{limitLevel}},
+				count: {{count}},
+				totalCount: {{totalCount}}
+		</p>
 
 		{{#with card}}
 		<p>

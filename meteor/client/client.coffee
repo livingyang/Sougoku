@@ -11,3 +11,5 @@ Router.map ->
 	@route "selectMultiCard"
 	@route "shop"
 	@route "materialList"
+	@route "mix"
+	

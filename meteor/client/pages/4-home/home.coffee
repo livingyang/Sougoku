@@ -7,14 +7,14 @@ Template.home.events "click #selectOneCard": ->
 			Router.go "home"
 
 Template.home.events "click #selectMultiCard": ->
-	selectedList = {}
-	for userCard in UserCardCollection.getTotalDetailUserCard()
-		selectedList[userCard._id] = true
+	cardIdAndCountMap = {}
+	for userCard in UserCardCollection.getDetailUserCardList()
+		cardIdAndCountMap[userCard.card._id] = userCard.count
 
 	GotoSelectMultiCardPage 
-		userCardIdWithSelectedList: selectedList
-		onSelectCardList: (userCardIdWithSelectedList) ->
-			alert JSON.stringify userCardIdWithSelectedList
+		cardIdAndCountMap: cardIdAndCountMap
+		onSelectCardList: (cardIdAndCountMap) ->
+			alert JSON.stringify cardIdAndCountMap
 			Router.go "home"
 		onCancel: ->
 			Router.go "home"

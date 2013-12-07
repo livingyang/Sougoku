@@ -1,29 +1,37 @@
 
-keySelectedUserIdList = "keySelectedUserIdList"
+keyCardIdAndCountMap = "keyCardIdAndCountMap"
 
-getList = ->
-	(Session.get keySelectedUserIdList) ? {}
+getCountMap = ->
+	(Session.get keyCardIdAndCountMap) ? {}
 
-setList = (userCardIdWithSelectedList) ->
-	Session.set keySelectedUserIdList, userCardIdWithSelectedList
+setCountMap = (cardIdAndCountMap) ->
+	Session.set keyCardIdAndCountMap, cardIdAndCountMap
 
-selectUserCardId = (userCardId) ->
-	userCardIdWithSelectedList = getList()
-	userCardIdWithSelectedList[userCardId] = not userCardIdWithSelectedList[userCardId]
-	setList userCardIdWithSelectedList
+addCardId = (cardId, maxCount = 1) ->
+	cardIdAndCountMap = getCountMap()
+	cardIdAndCountMap[cardId] ?= 0
+	if cardIdAndCountMap[cardId] < maxCount
+		++cardIdAndCountMap[cardId]
+	else
+		cardIdAndCountMap[cardId] = maxCount
+	setCountMap cardIdAndCountMap
+
+removeCardId = (cardId) ->
+	cardIdAndCountMap = getCountMap()
+	--cardIdAndCountMap[cardId] if cardIdAndCountMap[cardId] >= 1
+	setCountMap cardIdAndCountMap
 
 class @SelectMultiCardController extends RouteController
 	data: ->
-		userCards = for userCardId, isSelected of getList()
-			userCard = UserCardCollection.getDetailUserCard userCardId
-			userCard.isSelected = isSelected
-			userCard
-		userCards: userCards
+		detailUserCardList = UserCardCollection.getDetailUserCardList()
+		cardIdAndCountMap = getCountMap()
+		userCards: (for detailUserCard in detailUserCardList when cardIdAndCountMap[detailUserCard.card._id]?
+			detailUserCard.selectedCount = cardIdAndCountMap[detailUserCard.card._id]
+			detailUserCard)
 		
 @GotoSelectMultiCardPage = (options) ->
-	setList options.userCardIdWithSelectedList
+	setCountMap options.cardIdAndCountMap
 	Router.go "selectMultiCard", null, options
-
 
 Template.selectMultiCard.events "click #cancel": ->
 	console.log Router.current().options
@@ -34,7 +42,10 @@ Template.selectMultiCard.events "click #cancel": ->
 		Router.go "/"
 
 Template.selectMultiCard.events "click #ok": ->
-	Router.current().options.onSelectCardList? getList()
+	Router.current().options.onSelectCardList? getCountMap()
 	
-Template.selectMultiCard.events "click .div-user-card": ->
-	selectUserCardId @_id
+Template.selectMultiCard.events "click .btn-plus": ->
+	addCardId @card._id, @count
+
+Template.selectMultiCard.events "click .btn-minus": ->
+	removeCardId @card._id

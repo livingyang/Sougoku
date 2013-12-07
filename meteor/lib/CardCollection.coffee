@@ -15,74 +15,81 @@ CardCollection.randomOpenCard = ->
 
 ###
 @UserCardCollection 属于用户的卡牌信息集合
+_id: 用户id
+其他键为对应的cardId，记录的信息
+example:
+{
+	_id: userId,
+	"1": {
+		totalCount: 10,
+		count: 5,
+		exp: 0,
+		mergeCount: 0
+	}
+}
 ###
 
 @UserCardCollection = new Meteor.Collection "userCards"
 
-UserCardCollection.getUserCard = (userCardId) ->
-	@findOne _id: userCardId
+UserCardCollection.getUserCardMap = (userId = Meteor.userId()) ->
+	result = (@findOne _id: userId) ? {}
+	delete result._id
+	result
 
-UserCardCollection.getDetailUserCard = (userCardIdOrUserCard) ->
-	userCard = if typeof userCardIdOrUserCard is "string" then @getUserCard userCardIdOrUserCard else userCardIdOrUserCard
-	return if typeof userCard isnt "object"
+UserCardCollection.getDetailUserCardList = (userId = Meteor.userId()) ->
+	for cardId, userCard of @getUserCardMap userId when (CardCollection.getCard cardId)?
+		@getDetailUserCard userCard, CardCollection.getCard cardId
 
-	card = CardCollection.getCard userCard.cardId
-	card.star = CardHelper.getStar card.rare
+UserCardCollection.incUserCard = (userId, cardId, incObj) ->
+	updater = {}
+	for k, v of incObj
+		updater["#{cardId}.#{k}"] = v
+	@update {_id: userId}, {$inc: updater}, {upsert: true}
+
+UserCardCollection.addUserCard = (userId, cardId) ->
+	@incUserCard userId, cardId, count: 1, totalCount: 1
+
+UserCardCollection.getDetailUserCard = (userCard, card) ->
+	
+	userCard.card = card
+	
+	userCard.exp ?= 0
+	userCard.mergeCount ?= 0
 
 	userCard.level = CardHelper.getLevelFromExp userCard.exp
 	userCard.limitMaxLevel = CardHelper.getLimitMaxLevel (Number card.maxLevel), (Number card.mergeMaxLevel), (Number userCard.mergeCount)
 	userCard.limitLevel = CardHelper.getLimitLevel userCard.level, userCard.limitMaxLevel
-	userCard.compoundExp = @getCompoundExp userCard, card
-	
-	userCard.card = card
+	userCard.compoundExp = CardHelper.getBaseExp card.star
+
 	userCard
 
-UserCardCollection.getTotalDetailUserCard = ->
-	for userCard in @find().fetch()
-		@getDetailUserCard userCard
+UserCardCollection.getDetailUserCardFromCardId = (cardId, userId = Meteor.userId()) ->
+	userCard = @getUserCard cardId, userId
+	card = CardCollection.getCard cardId
+	if userCard? and card?
+		@getDetailUserCard userCard, card
+	else
+		null
 
-UserCardCollection.getCompoundExp = (userCard, card = CardCollection.getCard userCard.cardId) ->
-	(userCard.exp ? 0) + CardHelper.getBaseExpFromRare card.rare
+UserCardCollection.getUserCard = (cardId, userId = Meteor.userId()) ->
+	(@getUserCardMap userId)[cardId]
 
-if Meteor.isServer
-	UserCardCollection.addUserCard = (userId, cardId) ->
-		UserCardCollection.insert
-			userId: userId
-			cardId: cardId
-			exp: 0
-			mergeCount: 0
+UserCardCollection.compoundCard = (mainCardId, foodCardIdAndCountMap, userId = Meteor.userId()) ->
+	totalExp = 0
+	updater = {}
+	for cardId, userCard of @getUserCardMap userId when foodCardIdAndCountMap[cardId]? and (CardCollection.getCard cardId)?
+		card = CardCollection.getCard cardId
 
-	Meteor.methods addRandomCard: ->
-		card = CardCollection.randomOpenCard()
-		UserCardCollection.addUserCard @userId, card._id
+		compoundCount = if foodCardIdAndCountMap[cardId] < userCard.count
+		then foodCardIdAndCountMap[cardId]
+		else userCard.count
+		totalExp += compoundCount * CardHelper.getBaseExp card.star
+		updater["#{cardId}.count"] = -compoundCount
 
-	Meteor.methods compoundCard: (mainUserCardId, foodUserCardIdList) ->
+	updater["#{mainCardId}.exp"] = totalExp
 
-		# 检查是否合法
-		return if foodUserCardIdList.length <= 0 or _.contains foodUserCardIdList, mainUserCardId
-
-		# 检查 mainUserCardId是否属于玩家
-		mainUserCard = UserCardCollection.getUserCard mainUserCardId
-		return if mainUserCard?.userId isnt @userId
-
-		# 获取所有用户卡牌信息
-		foodUserCards = (UserCardCollection.getUserCard foodUserCardId for foodUserCardId in foodUserCardIdList)
-
-		# 获取合成经验
-		incObj = exp: 0, mergeCount: 0
-		for foodUserCard in foodUserCards when foodUserCard.userId is @userId
-			incObj.exp += UserCardCollection.getCompoundExp foodUserCard
-			++incObj.mergeCount if foodUserCard.cardId is mainUserCard.cardId
-			UserCardCollection.remove _id: foodUserCard._id
-
-		UserCardCollection.update {_id: mainUserCardId}, {$inc: incObj}
-
-if Meteor.isClient
-	UserCardCollection.addRandomCard = ->
-		Meteor.call "addRandomCard", (error, result) ->
-			console.log result
-
-	UserCardCollection.compoundCard = (mainUserCardId, foodUserCardIdList) ->
-		Meteor.call "compoundCard", mainUserCardId, foodUserCardIdList, (error, result) ->
-			console.log result
+	if foodCardIdAndCountMap[mainCardId] > 0
+		updater["#{mainCardId}.mergeCount"] = foodCardIdAndCountMap[mainCardId]
+	
+	@update {_id: userId}, {$inc: updater}, {upsert: true}
 
