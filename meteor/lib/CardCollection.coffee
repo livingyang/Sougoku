@@ -40,14 +40,17 @@ UserCardCollection.getDetailUserCardList = (userId = Meteor.userId()) ->
 	for cardId, userCard of @getUserCardMap userId when (CardCollection.getCard cardId)?
 		@getDetailUserCard userCard, CardCollection.getCard cardId
 
-UserCardCollection.incUserCard = (userId, cardId, incObj) ->
+UserCardCollection.incUserCard = (cardId, incObj, userId = Meteor.userId()) ->
 	updater = {}
 	for k, v of incObj
 		updater["#{cardId}.#{k}"] = v
 	@update {_id: userId}, {$inc: updater}, {upsert: true}
 
-UserCardCollection.addUserCard = (userId, cardId) ->
-	@incUserCard userId, cardId, count: 1, totalCount: 1
+UserCardCollection.addUserCard = (cardId, userId = Meteor.userId()) ->
+	@incUserCard cardId, count: 1, totalCount: 1, userId
+
+UserCardCollection.removeUserCard = (cardId, count, userId = Meteor.userId()) ->
+	@incUserCard cardId, count: -count, userId
 
 UserCardCollection.getDetailUserCard = (userCard, card) ->
 	

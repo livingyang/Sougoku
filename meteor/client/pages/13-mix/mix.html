@@ -10,22 +10,32 @@
 </template>
 
 <template name="mixTarget">
-	<div class="div-mix-target well">
+	<div class="div-mix-target panel panel-info">
+		<div class="panel-heading">
 		<img src="{{icon}}" />
+		<span class="label label-info">
+			name: {{name}},
+			type: {{type}},
+			targetId: {{targetId}},
+		</span>
 		{{#if canMix}}
 		<a class="mix-btn btn btn-danger">MIX</a>
 		{{/if}}
+		</div>
+
+		<div class="panel-body">
 		{{#each mixPartList}}
 			{{> mixPart}}
 		{{/each}}
+		</div>
 	</div>
 </template>
 
 <template name="mixPart">
 	<div class="div-mix-part">
 		<img src="{{icon}}" />
-		<span class="label label-info">name: {{name}}, id: {{_id}}, type: {{type}}</span>
-		<span class="label label-primary">count: {{curCount}}/{{needCount}}</span>
+		<span class="label label-info">name: {{name}}, _id: {{_id}}</span>
+		<span class="label label-primary">count: {{count}}/{{needCount}}</span>
 	</div>
 </template>
 

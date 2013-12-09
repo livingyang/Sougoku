@@ -47,5 +47,8 @@ Template.selectMultiCard.events "click #ok": ->
 Template.selectMultiCard.events "click .btn-plus": ->
 	addCardId @card._id, @count
 
+Template.selectMultiCard.events "click .div-user-card": ->
+	addCardId @card._id, @count
+
 Template.selectMultiCard.events "click .btn-minus": ->
 	removeCardId @card._id

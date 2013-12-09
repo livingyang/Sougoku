@@ -7,13 +7,29 @@
 MaterialCollection.getIsOpenCursor = ->
 	@find isOpen: "1"
 
+MaterialCollection.getMaterial = (materialId) ->
+	@findOne _id: materialId
+
 @UserMaterialCollection = new Meteor.Collection "userMaterial"
 
-UserMaterialCollection.addMaterial = (materialId) ->
+UserMaterialCollection.addMaterial = (materialId, userId = Meteor.userId()) ->
 	updater = {}
-	updater[materialId] = 1
+	updater["#{materialId}.count"] = 1
+	updater["#{materialId}.totalCount"] = 1
 	console.log updater
-	@update {_id: Meteor.userId()}, {$inc: updater}, {upsert: true}
+	@update {_id: userId}, {$inc: updater}, {upsert: true}
 
-UserMaterialCollection.getUserMaterialCount = ->
-	@findOne _id: Meteor.userId()
+UserMaterialCollection.removeMaterial = (materialId, count, userId = Meteor.userId()) ->
+	updater = {}
+	updater["#{materialId}.count"] = -count
+	console.log updater
+	@update {_id: userId}, {$inc: updater}, {upsert: true}
+
+UserMaterialCollection.getMaterialIdAndCountMap = (userId = Meteor.userId()) ->
+	result = @findOne _id: userId
+	delete result._id
+	result
+
+
+UserMaterialCollection.getUserMaterial = (materialId, userId = Meteor.userId())->
+	(@getMaterialIdAndCountMap userId)?[materialId]

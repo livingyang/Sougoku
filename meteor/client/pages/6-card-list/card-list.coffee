@@ -10,4 +10,4 @@ class @CardListController extends RouteController
 		cardList: cardList
 
 Template.cardList.events "click .div-card": ->
-	UserCardCollection.addUserCard Meteor.userId(), @_id
+	UserCardCollection.addUserCard @_id
