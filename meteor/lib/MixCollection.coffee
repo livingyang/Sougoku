@@ -7,22 +7,12 @@
 MixCollection.getMixObject = (type, id) ->
 	switch type
 		when "C"
-			CardCollection.getCard id
+			_.defaults (CardCollection.getCard id), (UserCardCollection.getUserCard id)
 		when "M"
-			MaterialCollection.getMaterial id
+			_.defaults (MaterialCollection.getMaterial id), (UserMaterialCollection.getUserMaterial id)
 		else
 			console.log "Error MixCollection.getMixObject type: #{type} id: #{id}"
 			null
-
-MixCollection.getMixObjectCurrentCount = (type, id, userId = Meteor.userId()) ->
-	switch type
-		when "C"
-			(UserCardCollection.getUserCard id, userId)?.count ? 0
-		when "M"
-			(UserMaterialCollection.getUserMaterial id, userId)?.count ? 0
-		else
-			console.log "Error MixCollection.getMixObjectCurrentCount type: #{type} id: #{id}"
-			0
 
 MixCollection.parseMixTarget = (mixTarget, userId = Meteor.userId()) -> 
 	_.defaults mixTarget, @getMixObject mixTarget.type, mixTarget.targetId
@@ -31,10 +21,17 @@ MixCollection.parseMixTarget = (mixTarget, userId = Meteor.userId()) ->
 		[type, id, needCount] = mixPart.split ":"
 		mixObject = @getMixObject type, id
 		mixObject.needCount = needCount
+		mixObject.count ?= 0
 		mixObject.type = type
-		# mixObject.count = @getMixObjectCurrentCount type, id, userId
-		# @getMixObjectCurrentCount type, id, userId
+		mixObject.partId = id
+
+		# if not add this, it will casue crash, I dont know why
+		delete mixObject._id
+
 		mixObject)
+	
+	mixTarget.canMix = MixCollection.canMix mixTarget
+	mixTarget.count ?= 0
 
 	mixTarget
 
@@ -45,27 +42,21 @@ MixCollection.canMix = (mixTarget) ->
 	canMix = true
 	canMix and= (mixPart.count >= mixPart.needCount) for mixPart in mixTarget.mixPartList
 	canMix
-	true
 
 MixCollection.mix = (type, targetId, userId = Meteor.userId()) ->
-	# mixTarget = @parseMixTarget (@findOne type: type, targetId: targetId), userId
-	# return if not @canMix mixTarget
+	mixTarget = @parseMixTarget (@findOne type: type, targetId: targetId), userId
+	return if not @canMix mixTarget
 
-	# console.log mixTarget
 	switch type
 		when "C"
 			UserCardCollection.addUserCard targetId
 		when "M"
 			UserMaterialCollection.addMaterial targetId
 
-	# for mixPart in mixTarget.mixPartList
-	# 	switch mixPart.type
-	# 		when "C"
-	# 			UserCardCollection.removeUserCard mixPart._id, mixPart.needCount
-	# 		when "M"
-	# 			UserMaterialCollection.removeMaterial mixPart._id, mixPart.needCount
+	for mixPart in mixTarget.mixPartList
+		switch mixPart.type
+			when "C"
+				UserCardCollection.removeUserCard mixPart.partId, mixPart.needCount
+			when "M"
+				UserMaterialCollection.removeMaterial mixPart.partId, mixPart.needCount
 
-
-# Meteor.startup ->
-	
-# 	console.log MixCollection.getMixList() if Meteor.isClient

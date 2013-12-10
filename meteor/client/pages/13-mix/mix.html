@@ -7,6 +7,9 @@
 	{{#each mixTargetList}}
 		{{> mixTarget}}
 	{{/each}}
+
+	<p>user card: {{{userCardMap}}}</p>
+	<p>user card: {{{userMaterialMap}}}</p>
 </template>
 
 <template name="mixTarget">
@@ -17,6 +20,7 @@
 			name: {{name}},
 			type: {{type}},
 			targetId: {{targetId}},
+			count: {{count}}
 		</span>
 		{{#if canMix}}
 		<a class="mix-btn btn btn-danger">MIX</a>
@@ -34,7 +38,11 @@
 <template name="mixPart">
 	<div class="div-mix-part">
 		<img src="{{icon}}" />
-		<span class="label label-info">name: {{name}}, _id: {{_id}}</span>
+		<span class="label label-info">
+			name: {{name}},
+			partId: {{partId}},
+			type: {{type}},
+		</span>
 		<span class="label label-primary">count: {{count}}/{{needCount}}</span>
 	</div>
 </template>
