@@ -20,6 +20,11 @@ Template.home.events "click #selectMultiCard": ->
 			Router.go "home"
 			
 Template.home.events "click #btn-modal": ->
-	content = Template["card"] CardCollection.getCard 1
-	$("#modal").html(content);
-	$("#modal").modal();
+
+	data = data: Random.id()
+	modal = $("#modal")
+	modal.html(Template["home-modal"] data).modal()
+
+	$("#home-ok").on "click", ->
+		console.log data
+		modal.modal "hide"
