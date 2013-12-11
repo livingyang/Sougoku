@@ -5,7 +5,7 @@
 @CardCollection = CreateCollectionFromPublicCsv "csv/1-human.csv"
 
 CardCollection.getCard = (cardId) ->
-	@findOne _id: cardId
+	@findOne _id: String cardId
 
 CardCollection.getIsOpenCursor = ->
 	@find isOpen: "1"

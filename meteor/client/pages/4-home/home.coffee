@@ -19,3 +19,7 @@ Template.home.events "click #selectMultiCard": ->
 		onCancel: ->
 			Router.go "home"
 			
+Template.home.events "click #btn-modal": ->
+	content = Template["card"] CardCollection.getCard 1
+	$("#modal").html(content);
+	$("#modal").modal();
