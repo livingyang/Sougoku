@@ -51,7 +51,7 @@ UserCardCollection.addUserCard = (cardId, userId = Meteor.userId()) ->
 
 UserCardCollection.removeUserCard = (cardId, count, userId = Meteor.userId()) ->
 	@incUserCard cardId, count: -count, userId
-
+	
 UserCardCollection.getDetailUserCard = (userCard, card) ->
 	
 	userCard.card = card

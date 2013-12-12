@@ -12,4 +12,5 @@ Router.map ->
 	@route "shop"
 	@route "materialList"
 	@route "mix"
+	@route "team"
 	
