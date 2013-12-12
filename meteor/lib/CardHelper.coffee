@@ -31,3 +31,9 @@
 			"EU": 5
 
 		if rareMap[rare]? then rareMap[rare] else 1
+
+	getMaxLevel: (star, mergeCount) ->
+		if star > mergeCount
+			(star + mergeCount) * 10
+		else
+			star * 20

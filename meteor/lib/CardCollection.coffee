@@ -60,8 +60,8 @@ UserCardCollection.getDetailUserCard = (userCard, card) ->
 	userCard.mergeCount ?= 0
 
 	userCard.level = CardHelper.getLevelFromExp userCard.exp
-	userCard.limitMaxLevel = CardHelper.getLimitMaxLevel (Number card.maxLevel), (Number card.mergeMaxLevel), (Number userCard.mergeCount)
-	userCard.limitLevel = CardHelper.getLimitLevel userCard.level, userCard.limitMaxLevel
+	userCard.maxLevel = CardHelper.getMaxLevel card.star, userCard.mergeCount
+	userCard.limitLevel = CardHelper.getLimitLevel userCard.level, userCard.maxLevel
 	userCard.compoundExp = CardHelper.getBaseExp card.star
 
 	userCard

@@ -63,3 +63,11 @@ describe "CardHelper", ->
 			(expect CardHelper.getStar "EU").toBe 5
 			(expect CardHelper.getStar()).toBe 1
 			
+	describe "getMaxLevel", ->
+		it "simple test", ->
+			(expect CardHelper.getMaxLevel 1, 1).toBe 20
+			(expect CardHelper.getMaxLevel 1, 0).toBe 10
+			(expect CardHelper.getMaxLevel 5, 2).toBe 70
+			(expect CardHelper.getMaxLevel 5, 5).toBe 100
+			(expect CardHelper.getMaxLevel 5, 6).toBe 100
+			

@@ -2,24 +2,28 @@
 	<h1>Card List</h1>
 	<a href="{{pathFor 'home'}}" class="btn btn-primary">Goto Home</a>
 	{{#each cardList}}
-		{{> card}}
+		<div class="well">
+			{{> card}}
+			<div>
+				<span class="label label-info">count: {{count}}</span>
+				<span class="label label-info">totalCount: {{totalCount}}</span>
+			</div>
+		</div>
 	{{/each}}
 </template>
 
 <template name="card">
 	<div class="div-card well">
 		<img src="{{icon}}" />
-		<span class="label label-primary">
-			_id: {{_id}},
-			name: {{name}},
-			rare: {{rare}},
-			star: {{star}},
-			cost: {{cost}},
-			support: {{support}}
-		</span>
-		<span class="label label-info">
-			count: {{count}},
-			totalCount: {{totalCount}}
-		</span>
+		<span class="label label-primary">_id: {{_id}}</span>
+		<span class="label label-primary">name: {{name}}</span>
+		<span class="label label-primary">rare: {{rare}}</span>
+		<span class="label label-primary">star: {{star}}</span>
+		<span class="label label-primary">cost: {{cost}}</span>
+		<span class="label label-primary">support: {{support}}</span>
+		<span class="label label-primary">health: {{health}}</span>
+		<span class="label label-primary">attack: {{attack}}</span>
+		<span class="label label-primary">upHealth: {{upHealth}}</span>
+		<span class="label label-primary">upAttack: {{upAttack}}</span>
 	</div>
 </template>
