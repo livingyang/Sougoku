@@ -1,7 +1,5 @@
 class @TeamController extends RouteController
 	load: ->
-		console.log "load"
-		console.log TeamCollection.getTeam()
 		setTeamCardIdAndCountMap TeamCollection.getTeam()
 
 	unload: ->
@@ -26,7 +24,7 @@ class @TeamController extends RouteController
 		totalHealth: totalHealth
 
 Template.team.events "click .div-left-card": ->
-	if @count > getTeamCardCount @card._id
+	if @count >= 1 > getTeamCardCount @card._id
 		addTeamCard @card._id
 		console.log getTeamCardIdAndCountMap()
 	else

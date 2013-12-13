@@ -1,3 +1,67 @@
 <template name="fight">
-	<canvas id="fight-canvas" width="{{canvasWidth}}" height="{{canvasHeight}}"></canvas>
+	<h1>Fight</h1>
+	<a href="{{pathFor 'home'}}">Goto Home</a>
+	<div class="row">
+		<div class="col-xs-6">
+			<div class=" panel panel-default">
+				<div class="panel-heading">强攻战</div>
+				<div class="panel-body">
+					{{#with defenseBoss}}
+					{{> defenseBoss}}
+					{{/with}}
+
+					<a class="btn btn-primary btn-block">开始进攻</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-6">
+			<div class=" panel panel-default">
+				<div class="panel-heading">防御战</div>
+				<div class="panel-body">
+					{{#with attackBoss}}
+					{{> attackBoss}}
+					{{/with}}
+
+					<a class="btn btn-primary btn-block">开始防守</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="attackBoss">
+	<div>
+		<p>
+			<span class="label label-primary">level: {{level}}</span>
+		</p>
+		<p>
+			<span class="label label-primary">attack: {{attack}}</span>
+		</p>
+		<p>
+			<span class="label label-default">health: {{health}}</span>
+		</p>
+		<p>
+			<span class="label label-primary">strong: {{strong}}</span>
+		</p>
+		<p>
+			<span class="label label-primary">winRate: {{winRate}}</span>
+		</p>
+	</div>
+</template>
+
+<template name="defenseBoss">
+	<div>
+		<p>
+			<span class="label label-primary">level: {{level}}</span>
+		</p>
+		<p>
+			<span class="label label-default">attack: {{attack}}</span>
+		</p>
+		<p>
+			<span class="label label-primary">health: {{health}}</span>
+		</p>
+		<p>
+			<span class="label label-primary">curHealth: {{curHealth}}</span>
+		</p>
+	</div>
 </template>
