@@ -71,3 +71,15 @@ describe "CardHelper", ->
 			(expect CardHelper.getMaxLevel 5, 5).toBe 100
 			(expect CardHelper.getMaxLevel 5, 6).toBe 100
 			
+	describe "getLevelUpValue", ->
+		it "simple test", ->
+			(expect CardHelper.getLevelUpValue 1, 1, 9).toBe 1
+			(expect CardHelper.getLevelUpValue 1, 2, 9).toBe 10
+			(expect CardHelper.getLevelUpValue 1, 3, 9).toBe 19
+
+			(expect CardHelper.getLevelUpValue 1, 3, 0.9).toBe 2
+			(expect CardHelper.getLevelUpValue "1", 3, 0.9).toBe 2
+			(expect CardHelper.getLevelUpValue "1", "3", 0.9).toBe 2
+			(expect CardHelper.getLevelUpValue "1", "3", "0.9").toBe 2
+			(expect CardHelper.getLevelUpValue 1, 3, "0.9").toBe 2
+			

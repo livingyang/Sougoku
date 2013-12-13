@@ -60,10 +60,11 @@ UserCardCollection.getDetailUserCard = (userCard, card) ->
 	userCard.mergeCount ?= 0
 
 	userCard.level = CardHelper.getLevelFromExp userCard.exp
-	userCard.maxLevel = CardHelper.getMaxLevel card.star, userCard.mergeCount
+	userCard.maxLevel = CardHelper.getMaxLevel (Number card.star), userCard.mergeCount
 	userCard.limitLevel = CardHelper.getLimitLevel userCard.level, userCard.maxLevel
 	userCard.compoundExp = CardHelper.getBaseExp card.star
-
+	userCard.health = CardHelper.getLevelUpValue card.health, userCard.level, card.upHealth
+	userCard.attack = CardHelper.getLevelUpValue card.attack, userCard.level, card.upAttack
 	userCard
 
 UserCardCollection.getDetailUserCardFromCardId = (cardId, userId = Meteor.userId()) ->

@@ -14,12 +14,16 @@ class @TeamController extends RouteController
 				teamCardList.push UserCardCollection.getDetailUserCardFromCardId cardId
 
 		totalAttack = 0
-		totalDefense = 0
+		totalHealth = 0
 
+		for userCard in teamCardList
+			totalAttack += userCard.attack
+			totalHealth += userCard.health
+		
 		userCardList: UserCardCollection.getDetailUserCardList()
 		teamCardList: teamCardList
 		totalAttack: totalAttack
-		totalDefense: totalDefense
+		totalHealth: totalHealth
 
 Template.team.events "click .div-left-card": ->
 	if @count > getTeamCardCount @card._id

@@ -37,3 +37,6 @@
 			(star + mergeCount) * 10
 		else
 			star * 20
+
+	getLevelUpValue: (levelOneValue, curLevel, levelUpValue) ->
+		Math.floor (Number levelOneValue) + (curLevel - 1) * levelUpValue
