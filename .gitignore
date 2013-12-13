@@ -9,3 +9,4 @@ xcschememanagement.plist
 build/
 .DS_Store
 xcuserdata/
+.~lock*
