@@ -1,23 +1,28 @@
 <template name="home">
 	<div id="bg-home">
-		<a href="{{pathFor 'logo'}}">Back To Logo</a>
-		<div class="right-nav">
-			<div>
-				<a class="btn btn-primary btn-block">探索</a>
-				<a class="btn btn-success btn-block" href="{{pathFor 'fight'}}">挑战</a>
-				<a class="btn btn-primary btn-block">设置</a>
-				<a class="btn btn-success btn-block" href="{{pathFor 'team'}}">队伍</a>
-				<a class="btn btn-success btn-block" href="{{pathFor 'shop'}}">商店</a>
-				<a class="btn btn-success btn-block" href="{{pathFor 'compoundCard'}}">合成</a>
-				<a class="btn btn-success btn-block" href="{{pathFor 'cardList'}}">卡牌集</a>
-				<a class="btn btn-primary btn-block">剧情</a>
-				<a class="btn btn-success btn-block" href="{{pathFor 'myCards'}}">我的卡牌</a>
-				<a class="btn btn-success btn-block" id="selectOneCard">单选卡牌</a>
-				<a class="btn btn-success btn-block" id="selectMultiCard">多选卡牌</a>
-				<a class="btn btn-success btn-block" href="{{pathFor 'materialList'}}">素材列表</a>
-				<a class="btn btn-success btn-block" href="{{pathFor 'mix'}}">炼成</a>
-				<a class="btn btn-success btn-block" id="btn-modal">测试弹框</a>
+		<div class="ui-layout-center">
+			<div class="navbar-fixed-top">
+				<a class="btn btn-primary" href="{{pathFor 'logo'}}">Back To Logo</a>
 			</div>
+			<div class="navbar-fixed-bottom">
+				<a class="btn btn-success" href="{{pathFor 'myCards'}}">我的卡牌</a>
+			</div>
+		</div>
+		
+		<div class="ui-layout-east home-btn-panel">
+			<a class="btn btn-primary btn-block">探索</a>
+			<a class="btn btn-success btn-block" href="{{pathFor 'fight'}}">挑战</a>
+			<a class="btn btn-primary btn-block">设置</a>
+			<a class="btn btn-success btn-block" href="{{pathFor 'team'}}">队伍</a>
+			<a class="btn btn-success btn-block" href="{{pathFor 'shop'}}">商店</a>
+			<a class="btn btn-success btn-block" href="{{pathFor 'compoundCard'}}">合成</a>
+			<a class="btn btn-success btn-block" href="{{pathFor 'cardList'}}">卡牌集</a>
+			<a class="btn btn-primary btn-block">剧情</a>
+			<a class="btn btn-success btn-block" id="selectOneCard">单选卡牌</a>
+			<a class="btn btn-success btn-block" id="selectMultiCard">多选卡牌</a>
+			<a class="btn btn-success btn-block" href="{{pathFor 'materialList'}}">素材列表</a>
+			<a class="btn btn-success btn-block" href="{{pathFor 'mix'}}">炼成</a>
+			<a class="btn btn-success btn-block" id="btn-modal">测试弹框</a>
 		</div>
 	</div>
 

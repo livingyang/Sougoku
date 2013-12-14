@@ -1,3 +1,7 @@
+Template.home.rendered = ->
+	$('#bg-home').layout
+		east__size: .1
+
 Template.home.events "click #selectOneCard": ->
 	GotoSelectOneCardPage
 		onSelectCard: (userCardId) ->

@@ -1,3 +1,11 @@
+Template.team.rendered = ->
+	$('#div-team').layout
+		north__size: .1
+		north__spacing_open: 0
+		center__childOptions:
+			west__size: .5
+			west__spacing_open: 0
+
 class @TeamController extends RouteController
 	load: ->
 		setTeamCardIdAndCountMap TeamCollection.getTeam()

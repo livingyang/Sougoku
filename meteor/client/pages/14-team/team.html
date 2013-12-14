@@ -1,36 +1,50 @@
 <template name="team">
-	<h1>Team</h1>
-	<a href="{{pathFor 'home'}}">Goto Home</a>
-	<div class="row">
-		<div class="col-xs-6">
-			<div class=" panel panel-default">
-				<div class="panel-heading">我的卡牌列表：</div>
-				<div class="panel-body">
-				{{#each userCardList}}
-					<div class="div-left-card">
-					{{> userCard}}
+	<div id="div-team">
+		<div class="ui-layout-north">
+			<span class="label label-info">Team</span>
+			<a href="{{pathFor 'home'}}">Goto Home</a>
+		</div>
+		<div class="ui-layout-center">
+			<div class="ui-layout-west" style="overflow-y:scroll;">
+				<div class="panel panel-default">
+						<div class="panel-heading">我的卡牌列表：</div>
+						<div class="panel-body">
+						{{#each userCardList}}
+							<div class="div-left-card">
+							{{> userCard}}
+							</div>
+						{{/each}}
+						</div>
 					</div>
-				{{/each}}
+			</div>
+			<div class="ui-layout-center" style="overflow-y:scroll;">
+				<div class="panel panel-default">
+						<div class="panel-heading">
+							<p>卡牌数量：{{teamCardList.length}}</p>
+							<p>总攻击力：{{totalAttack}}</p>
+							<p>总生命值：{{totalHealth}}</p>
+						</div>
+						<div class="panel-body">
+						{{#each teamCardList}}
+							<div class="div-right-card">
+							{{> userCard}}
+							</div>
+						{{/each}}
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-xs-6">
-			<div class=" panel panel-default">
-				<div class="panel-heading">
-					<p>卡牌数量：{{teamCardList.length}}</p>
-					<p>总攻击力：{{totalAttack}}</p>
-					<p>总生命值：{{totalHealth}}</p>
+
+			<div class="row">
+				<div class="col-xs-6">
+					
 				</div>
-				<div class="panel-body">
-				{{#each teamCardList}}
-					<div class="div-right-card">
-					{{> userCard}}
-					</div>
-				{{/each}}
-				</div>
+				<div class="col-xs-6">
+					
 			</div>
 		</div>
 	</div>
+	
 </template>
 
 <template name="testData">
