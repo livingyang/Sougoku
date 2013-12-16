@@ -53,8 +53,8 @@ Template.fight.events "click #attack": ->
 
 Template.fight.events "click #defense": ->
 	bossRemainAttack = Session.get "bossRemainAttack"
-	bossRemainAttack = FightHelper.getRemainAttack bossRemainAttack, userHealth
 	if FightHelper.isDefenseSuccess bossRemainAttack, userHealth
 		resetBossLevel getBossLevel() + 1
 	else
+		bossRemainAttack = FightHelper.getRemainAttack bossRemainAttack, userHealth / 2
 		Session.set "bossRemainAttack", bossRemainAttack
