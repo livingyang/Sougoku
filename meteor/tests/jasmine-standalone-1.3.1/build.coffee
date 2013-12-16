@@ -21,6 +21,7 @@ buildFile = (filePath, distDir) ->
 # build src file
 srcFiles = [
 	"../../lib/CardHelper.coffee"
+	"../../lib/FightHelper.coffee"
 ]
 
 srcFiles.forEach (srcFile) ->
