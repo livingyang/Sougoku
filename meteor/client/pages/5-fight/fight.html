@@ -10,7 +10,7 @@
 					{{> defenseBoss}}
 					{{/with}}
 
-					<a class="btn btn-primary btn-block">开始进攻</a>
+					<a class="btn btn-primary btn-block" id="attack">开始进攻</a>
 				</div>
 			</div>
 		</div>
@@ -22,7 +22,7 @@
 					{{> attackBoss}}
 					{{/with}}
 
-					<a class="btn btn-primary btn-block">开始防守</a>
+					<a class="btn btn-primary btn-block" id="defense">开始防守</a>
 				</div>
 			</div>
 		</div>
@@ -39,6 +39,9 @@
 		</p>
 		<p>
 			<span class="label label-default">health: {{health}}</span>
+		</p>
+		<p>
+			<span class="label label-primary">remainAttack: {{remainAttack}}</span>
 		</p>
 		<p>
 			<span class="label label-primary">strong: {{strong}}</span>
@@ -61,7 +64,7 @@
 			<span class="label label-primary">health: {{health}}</span>
 		</p>
 		<p>
-			<span class="label label-primary">curHealth: {{curHealth}}</span>
+			<span class="label label-primary">remainHealth: {{remainHealth}}</span>
 		</p>
 	</div>
 </template>

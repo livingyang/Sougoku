@@ -38,5 +38,19 @@ describe "FightHelperSpec", ->
 		it "isDefenseSuccess", ->
 			(expect FightHelper.isDefenseSuccess 10, 0).toBe false
 			(expect FightHelper.isDefenseSuccess 10, 10).toBe true
-			(expect FightHelper.isDefenseSuccess 0, 0).toBe false
+			(expect FightHelper.isDefenseSuccess 0, 0).toBe true
 			(expect FightHelper.isDefenseSuccess 0, 10).toBe true
+
+			(expect FightHelper.isDefenseSuccess -1, 10).toBe true
+			(expect FightHelper.isDefenseSuccess -1, 0).toBe true
+			(expect FightHelper.isDefenseSuccess -1, -10).toBe true
+
+		it "getDefenseSuccessRate", ->
+			(expect FightHelper.getDefenseSuccessRate 10, 0).toBe 0
+			(expect FightHelper.getDefenseSuccessRate 10, 10).toBe 1
+			(expect FightHelper.getDefenseSuccessRate 0, 0).toBe 1
+			(expect FightHelper.getDefenseSuccessRate 0, 10).toBe 1
+
+			(expect FightHelper.getDefenseSuccessRate -1, 10).toBe 1
+			(expect FightHelper.getDefenseSuccessRate -1, 0).toBe 1
+			(expect FightHelper.getDefenseSuccessRate -1, -10).toBe 1

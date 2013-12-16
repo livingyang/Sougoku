@@ -16,4 +16,11 @@
 		attackStrength <= 0
 
 	isDefenseSuccess: (remainAttack, health) ->
+		return true if remainAttack <= 0
 		health > Math.random() * remainAttack >= 0
+
+	getDefenseSuccessRate: (remainAttack, health) ->
+		if health >= remainAttack or remainAttack <= 0
+			1
+		else
+			health / remainAttack
