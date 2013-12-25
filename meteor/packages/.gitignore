@@ -1,7 +1,6 @@
-reststop2
-iron-router
-createjs
-nprogress
-bootstrap-3
-json-loader
-csv-to-collection
+/bootstrap-3
+/reststop2
+/iron-router
+/createjs
+/nprogress
+/csv-to-collection
