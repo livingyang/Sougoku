@@ -1,0 +1,20 @@
+<template name="comboList">
+	<h1>Combo List</h1>
+	<a href="{{pathFor 'home'}}">Goto Home</a>
+
+	{{#each comboList}}
+		<div class="well">
+		{{> combo}}
+
+		{{#each cardList}}
+			{{> card}}
+		{{/each}}
+		</div>
+	{{/each}}
+</template>
+
+<template name="combo">
+	<span class="label label-primary">_id: {{_id}}</span>
+	<span class="label label-primary">name: {{name}}</span>
+	<span class="label label-primary">type: {{type}}</span>
+</template>

@@ -16,4 +16,5 @@ Router.map ->
 	@route "friendManager"
 	@route "strangerManager"
 	@route "settings"
+	@route "comboList"
 	

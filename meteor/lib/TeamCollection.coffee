@@ -14,5 +14,4 @@ TeamCollection.setTeam = (teamCardIdAndCountMap, userId = Meteor.userId()) ->
 	@update {_id: userId}, {$set: teamCardIdAndCountMap}, {upsert: true}
 
 TeamCollection.getTeam = (userId = Meteor.userId()) ->
-	console.log @findOne _id: userId
 	_.omit (@findOne _id: userId), "_id"

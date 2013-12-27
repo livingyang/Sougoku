@@ -34,12 +34,15 @@ class @TeamController extends RouteController
 Template.team.events "click .div-left-card": ->
 	if @count >= 1 > getTeamCardCount @card._id
 		addTeamCard @card._id
-		console.log getTeamCardIdAndCountMap()
 	else
 		console.log "enough select card: #{@card._id}"
 
 Template.team.events "click .div-right-card": ->
 	removeTeamCard @card._id
+
+Template.team.events "click #activeCombo": ->
+	teamCardIdList = (cardId for cardId, count of getTeamCardIdAndCountMap() when count > 0)
+	alert "Active Combe: #{(ComboCollection.getActiveComboIdList teamCardIdList).join()}"
 
 ###
 Team card count manager
