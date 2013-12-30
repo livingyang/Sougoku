@@ -9,4 +9,7 @@ ComboCollection.isActiveCombe = (teamCardIdList, cardIdList) ->
 
 ComboCollection.getActiveComboIdList = (teamCardIdList) ->
 	for combo in @find().fetch() when @isActiveCombe teamCardIdList, combo.cardIdList.split " "
-		combo._id	
+		combo._id
+
+ComboCollection.getActiveComboList = (teamCardIdList) ->
+	combo for combo in @find().fetch() when @isActiveCombe teamCardIdList, combo.cardIdList.split " "

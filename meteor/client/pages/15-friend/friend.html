@@ -1,0 +1,83 @@
+<!-- friendList -->
+
+<template name="friendList">
+	<h1>Friend</h1>
+	<a href="{{pathFor 'home'}}">Goto Home</a>
+	<div>
+		{{#each myRequestFriendList}}
+		<div class="well">
+			{{#with requestUser}}
+			{{> requestUser}}
+			{{/with}}
+			<a class="btn btn-danger deleteFriend">删除好友</a>
+		</div>
+		{{/each}}
+
+		{{#each acceptFriendList}}
+		<div class="well">
+			{{#with requestUser}}
+			{{> requestUser}}
+			{{/with}}
+			<a class="btn btn-danger deleteFriend">删除好友</a>
+		</div>
+		{{/each}}
+	</div>
+</template>
+
+<template name="friend">
+</template>
+
+<!-- strangerList -->
+
+<template name="strangerList">
+	<h1>Stranger</h1>
+	<a href="{{pathFor 'home'}}">Goto Home</a>
+	<div>
+		{{#each strangerList}}
+		<div class="well">
+			{{> stranger}}
+			<a class="btn btn-info add">Add</a>
+		</div>
+		{{/each}}
+	</div>
+</template>
+
+<template name="stranger">
+	<p><span class="label label-primary">_id: {{_id}}</span></p>
+	<p><span class="label label-primary">username: {{profile.name}}</span></p>
+</template>
+
+<!-- friend request list -->
+
+<template name="friendRequestList">
+	<h1>Friend Request List</h1>
+	<a href="{{pathFor 'home'}}">Goto Home</a>
+	<p>我的请求<span class="badge">{{myRequestList.length}}</span></p>
+	{{#each myRequestList}}
+	<div class="well">
+		{{#with requestUser}}
+		{{> requestUser}}
+		{{/with}}
+
+		<a class="btn btn-danger deleteRequest">删除请求</a>
+	</div>
+	{{/each}}
+
+	<p>别人的请求<span class="badge">{{othersRequestList.length}}</span></p>
+	{{#each othersRequestList}}
+	<div class="well">
+		{{#with requestUser}}
+		{{> requestUser}}
+		{{/with}}
+
+		<a class="btn btn-success acceptRequest">接受请求</a>
+		<a class="btn btn-danger rejectRequest">拒绝请求</a>
+	</div>
+	{{/each}}
+
+</template>
+
+<template name="requestUser">
+	<p><span class="label label-primary">_id: {{_id}}</span></p>
+	<p><span class="label label-primary">username: {{profile.name}}</span></p>
+</template>

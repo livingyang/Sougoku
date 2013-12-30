@@ -42,7 +42,13 @@ Template.team.events "click .div-right-card": ->
 
 Template.team.events "click #activeCombo": ->
 	teamCardIdList = (cardId for cardId, count of getTeamCardIdAndCountMap() when count > 0)
-	alert "Active Combe: #{(ComboCollection.getActiveComboIdList teamCardIdList).join()}"
+	comboList = ComboCollection.getActiveComboList teamCardIdList
+	upPercentInfo = {}
+	for combo in comboList
+		upPercentInfo[combo.type] = 0 if not upPercentInfo[combo.type]?
+		upPercentInfo[combo.type] += Number(combo.upPercent)
+	
+	alert "Active Combe: #{(ComboCollection.getActiveComboIdList teamCardIdList).join()}, upPercent: #{JSON.stringify upPercentInfo}"
 
 ###
 Team card count manager

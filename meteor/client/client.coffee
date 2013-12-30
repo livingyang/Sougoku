@@ -13,8 +13,9 @@ Router.map ->
 	@route "materialList"
 	@route "mix"
 	@route "team"
-	@route "friendManager"
-	@route "strangerManager"
+	@route "friendList"
+	@route "strangerList"
+	@route "friendRequestList"
 	@route "settings"
 	@route "comboList"
 	
