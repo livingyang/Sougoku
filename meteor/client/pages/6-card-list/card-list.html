@@ -4,6 +4,19 @@
 	{{#each cardList}}
 		<div class="well">
 			{{> card}}
+
+			{{#with skill1}}
+			<div class="well">
+				{{> skill}}
+			</div>
+			{{/with}}
+
+			{{#with skill2}}
+			<div class="well">
+				{{> skill}}
+			</div>
+			{{/with}}
+			
 			<div>
 				<span class="label label-info">count: {{count}}</span>
 				<span class="label label-info">totalCount: {{totalCount}}</span>
@@ -26,4 +39,12 @@
 		<span class="label label-primary">upHealth: {{upHealth}}</span>
 		<span class="label label-primary">upAttack: {{upAttack}}</span>
 	</div>
+</template>
+
+<template name="skill">
+	<span class="label label-primary">_id: {{_id}}</span>
+	<span class="label label-primary">name: {{name}}</span>
+	<span class="label label-primary">type: {{type}}</span>
+	<span class="label label-primary">upPercent: {{upPercent}}</span>
+	<span class="label label-primary">probability: {{probability}}</span>
 </template>

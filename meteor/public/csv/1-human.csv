@@ -1,4 +1,4 @@
-"_id","name","kind","rare","star","support","cost","slot","health","attack","skill1","skill2","upHealth","upAttack","isOpen","image","icon"
+"_id","name","kind","rare","star","support","cost","slot","health","attack","skillId1","skillId2","upHealth","upAttack","isOpen","image","icon"
 1,"仙崎 秀哉","人間","C",1,1,1,1,4,5,"血の憑依",,1,1.9,1,"/card/CD001JA.jpg","/card/CD001JB.jpg"
 2,"仙崎 秀哉","人間","C",1,1,2,1,7,8,"血の支配",,1,1.9,1,"/card/CD001KA.jpg","/card/CD001KB.jpg"
 3,"仙崎 秀哉","人間","R",3,2,3,1,10,9,"血の脈動",,1,1.9,1,"/card/CD001LA.jpg","/card/CD001LB.jpg"
