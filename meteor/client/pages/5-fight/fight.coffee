@@ -58,3 +58,9 @@ Template.fight.events "click #defense": ->
 	else
 		bossRemainAttack = FightHelper.getRemainAttack bossRemainAttack, userHealth / 2
 		Session.set "bossRemainAttack", bossRemainAttack
+
+Template.fight.events "click #generalHealth": ->
+	console.log JSON.stringify TeamCollection.generateFightData()
+
+Template.fight.events "click #generalAttack": ->
+	console.log TeamCollection.generateAttackData()

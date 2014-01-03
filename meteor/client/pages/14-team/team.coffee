@@ -32,10 +32,8 @@ class @TeamController extends RouteController
 		totalHealth: totalHealth
 
 Template.team.events "click .div-left-card": ->
-	if @count >= 1 > getTeamCardCount @card._id
+	if @count > getTeamCardCount @card._id
 		addTeamCard @card._id
-	else
-		console.log "enough select card: #{@card._id}"
 
 Template.team.events "click .div-right-card": ->
 	removeTeamCard @card._id
