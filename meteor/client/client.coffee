@@ -18,4 +18,5 @@ Router.map ->
 	@route "friendRequestList"
 	@route "settings"
 	@route "comboList"
+	@route "bossList"
 	
