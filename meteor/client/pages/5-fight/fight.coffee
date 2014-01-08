@@ -2,9 +2,6 @@
 bossHealth = 12
 bossAttack = 11
 
-userHealth = 20
-userAttack = 21
-
 getBossValue = (base, level) ->
 	base * level * level + base * level
 
@@ -35,7 +32,6 @@ class @FightController extends RouteController
 			health: maxBossHealth
 			remainAttack: bossRemainAttack
 			strong: "#{(100 * FightHelper.getAttackStrength bossRemainAttack, maxBossAttack).toFixed 2}%"
-			winRate: "#{(100 * FightHelper.getDefenseSuccessRate bossRemainAttack, userHealth).toFixed 2}%"
 
 		defenseBoss:
 			level: getBossLevel()
@@ -44,6 +40,7 @@ class @FightController extends RouteController
 			remainHealth: bossRemainHealth
 
 Template.fight.events "click #attack": ->
+	userAttack = Math.floor TeamCollection.generateFightData().finalAttack
 	bossRemainHealth = Session.get "bossRemainHealth"
 	bossRemainHealth = FightHelper.countEnemyHealth bossRemainHealth, userAttack
 	if FightHelper.isEnemyDead bossRemainHealth
@@ -53,14 +50,12 @@ Template.fight.events "click #attack": ->
 
 Template.fight.events "click #defense": ->
 	bossRemainAttack = Session.get "bossRemainAttack"
+	userHealth = Math.floor TeamCollection.generateFightData().finalHealth
 	if FightHelper.isDefenseSuccess bossRemainAttack, userHealth
 		resetBossLevel getBossLevel() + 1
 	else
 		bossRemainAttack = FightHelper.getRemainAttack bossRemainAttack, userHealth / 2
 		Session.set "bossRemainAttack", bossRemainAttack
 
-Template.fight.events "click #generalHealth": ->
+Template.fight.events "click #generalFight": ->
 	console.log JSON.stringify TeamCollection.generateFightData()
-
-Template.fight.events "click #generalAttack": ->
-	console.log TeamCollection.generateAttackData()

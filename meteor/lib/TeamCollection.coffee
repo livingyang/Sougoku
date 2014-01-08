@@ -66,18 +66,3 @@ TeamCollection.generateFightData = (userId = Meteor.userId()) ->
 	comboUpAttackPercent: comboUpAttackPercent
 	finalHealth: teamHealth + teamHealth * comboUpHealthPercent / 100
 	finalAttack: teamAttack + teamAttack * comboUpAttackPercent / 100
-
-TeamCollection.generateHealthData = (userId = Meteor.userId()) ->
-	userCardMap = UserCardCollection.getUserCardMap()
-	
-	healthData = []
-	for cardId, count of @getTeam()
-		userCard = UserCardCollection.getDetailUserCard userCardMap[cardId], CardCollection.getCard cardId
-		for i in [0...count]
-			healthData.push userCard
-		
-	healthData
-
-TeamCollection.generateAttackData = (userId = Meteor.userId()) ->
-	teamData = @getTeam()
-	teamData
