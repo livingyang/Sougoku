@@ -1,7 +1,19 @@
 <template name="bossList">
 	<h1>Boss List</h1>
 	<a href="{{pathFor 'home'}}">Goto Home</a>
+	<a class="btn btn-primary" id="addBoss">加个boss</a>
+
+	{{#each bossList}}
+	<div class="well">
+		{{> boss}}
+	</div>
+	{{/each}}
+
 </template>
 
 <template name="boss">
+	<span class="label label-primary">_id: {{_id}}</span>
+	<span class="label label-primary">bossCardId: {{bossCardId}}</span>
+	<span class="label label-primary">level: {{level}}</span>
+	<a class="btn btn-primary removeBoss">删除</a>
 </template>
