@@ -15,5 +15,14 @@
 	<span class="label label-primary">_id: {{_id}}</span>
 	<span class="label label-primary">bossCardId: {{bossCardId}}</span>
 	<span class="label label-primary">level: {{level}}</span>
+	<span class="label label-primary" id="{{_id}}">{{disappearTimeFromNow}}</span>
+	<span class="label label-info">
+		{{#if isDefeated}}
+		<span>已战胜</span>
+		{{else}}
+		<span>未战胜</span>
+		{{/if}}
+	</span>
+	<a class="btn btn-primary attackBoss">挑战</a>
 	<a class="btn btn-primary removeBoss">删除</a>
 </template>

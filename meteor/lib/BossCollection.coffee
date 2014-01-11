@@ -12,5 +12,8 @@ BossCollection.addBoss = (bossCardId, level, userId = Meteor.userId()) ->
 		disappearTime: @getDelayMinutesTime 3
 		level: level
 
+BossCollection.defeatBoss = (bossId) ->
+	@update {_id: bossId}, {$set: isDefeated: true}
+
 BossCollection.getBossList = (userId = Meteor.userId()) ->
 	(@find userId: userId).fetch()

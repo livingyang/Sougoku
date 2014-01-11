@@ -5,6 +5,7 @@
     "createjs": {},
     "nprogress": {},
     "bootstrap-3": {},
-    "csv-to-collection": {}
+    "csv-to-collection": {},
+    "moment": {}
   }
 }

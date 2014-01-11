@@ -2,7 +2,7 @@ client: cordova
 frameworks: PurchasePlatform
 
 server: meteor
-frameworks: coffeescript, underscore, appcache, accounts-password, accounts-ui, stylus, jquery-layout, iron-router, reststop2, meteor-createjs, nprogress, bootstrap-3, csv-to-collection
+frameworks: coffeescript, underscore, appcache, accounts-password, accounts-ui, stylus, jquery-layout, iron-router, reststop2, meteor-createjs, nprogress, bootstrap-3, csv-to-collection, moment
 
 战斗方式：
 1 强攻战，显示敌方血量，每攻击一次敌方，可减少敌方血量
