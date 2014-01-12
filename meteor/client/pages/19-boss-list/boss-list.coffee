@@ -22,6 +22,7 @@ class @BossListController extends RouteController
 		bossList = BossCollection.getBossList()
 		for boss in bossList
 			boss.disappearTimeFromNow = @getDisappearTimeFromNow boss.disappearTime
+			boss.isTimeout = @isBossTimeout boss.disappearTime
 
 		setBossUpdater =>
 			console.log "Meteor.setInterval"
@@ -34,6 +35,9 @@ class @BossListController extends RouteController
 		disappearTimeFromNow = disappearTime - Date.now()
 		disappearTimeFromNow = 0 if disappearTimeFromNow < 0
 		moment.utc(disappearTimeFromNow).format "HH:mm:ss"
+	
+	isBossTimeout: (disappearTime) ->
+		disappearTime - Date.now() <= 0
 		
 Template.bossList.events "click #addBoss": ->
 	BossCollection.addBoss 1, Math.ceil Math.random() * 10

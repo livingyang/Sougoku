@@ -23,6 +23,13 @@
 		<span>未战胜</span>
 		{{/if}}
 	</span>
+	<span class="label label-info">
+		{{#if isTimeout}}
+		<span>已过期</span>
+		{{else}}
+		<span>未过期</span>
+		{{/if}}
+	</span>
 	<a class="btn btn-primary attackBoss">挑战</a>
 	<a class="btn btn-primary removeBoss">删除</a>
 </template>
