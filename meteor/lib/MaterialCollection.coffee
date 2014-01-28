@@ -26,9 +26,7 @@ UserMaterialCollection.removeMaterial = (materialId, count, userId = Meteor.user
 	@update {_id: userId}, {$inc: updater}, {upsert: true}
 
 UserMaterialCollection.getMaterialIdAndCountMap = (userId = Meteor.userId()) ->
-	result = @findOne _id: userId
-	delete result._id
-	result
+	_.omit (@findOne _id: userId), "_id"
 
 
 UserMaterialCollection.getUserMaterial = (materialId, userId = Meteor.userId())->

@@ -32,9 +32,6 @@ example:
 @UserCardCollection = new Meteor.Collection "userCards"
 
 UserCardCollection.getUserCardMap = (userId = Meteor.userId()) ->
-	# result = (@findOne _id: userId) ? {}
-	# delete result._id
-	# result
 	_.omit (@findOne _id: userId), "_id"
 
 UserCardCollection.getDetailUserCardList = (userId = Meteor.userId()) ->
