@@ -32,3 +32,6 @@ Template.home.events "click #btn-modal": ->
 	$("#home-ok").on "click", ->
 		console.log data
 		modal.modal "hide"
+
+Template.home.events "click #fight-boss": ->
+	FightBoss {}
