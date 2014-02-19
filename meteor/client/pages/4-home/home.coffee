@@ -35,3 +35,7 @@ Template.home.events "click #btn-modal": ->
 
 Template.home.events "click #fight-boss": ->
 	FightBoss {}
+
+Template.home.events "click #fight-player": ->
+	PlayFight {}, -> console.log "done"
+	

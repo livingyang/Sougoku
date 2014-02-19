@@ -5,6 +5,7 @@ Router.map ->
 	@route "home"
 	@route "fight"
 	@route "fight-boss"
+	@route "fightPlayer"
 	@route "cardList"
 	@route "myCards"
 	@route "compoundCard"
