@@ -7,7 +7,7 @@
 		console.log "complete"
 		createjs.Sound.play "sound"
 
-	queue.loadFile({id:"sound", src:"ogg/BGM018.ogg"}, false);
+	queue.loadFile({id:"sound", src:"bgm/BGM030.m4a"}, false);
 	# queue.loadManifest([
 	# 	{id: "card", src:"card/CD000AA.jpg"}
 	# 	]);
