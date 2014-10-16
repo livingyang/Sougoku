@@ -1,7 +1,7 @@
 Router.map ->
-	@route "logo", path: "/"
+	@route "logo"
 	@route "cordovaLogin"
-	@route "webLogin"
+	@route "webLogin", path: "/"
 	@route "home"
 	@route "fight"
 	@route "fight-boss"
@@ -21,4 +21,3 @@ Router.map ->
 	@route "settings"
 	@route "comboList"
 	@route "bossList"
-	
